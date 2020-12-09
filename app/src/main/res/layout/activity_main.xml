@@ -21,7 +21,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/app_name"
                 app:menu="@menu/top_app_bar"
-                style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary" />
+                />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
