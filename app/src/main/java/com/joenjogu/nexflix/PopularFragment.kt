@@ -13,7 +13,15 @@ import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
 
 class PopularFragment : Fragment() {
     private lateinit var binding: FragmentPopularBinding
-    private lateinit var viewModel: PopularMovieViewModel
+//    private lateinit var viewModel: PopularMovieViewModel
+
+    private val viewModel: PopularMovieViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
+        }
+        ViewModelProvider(this, Injection.provideViewModelFactory(activity.application))
+            .get(PopularMovieViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,8 +33,8 @@ class PopularFragment : Fragment() {
         val adapter = PopularMovieAdapter()
         binding.adapter = adapter
 
-        viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
-            .get(PopularMovieViewModel::class.java)
+//        viewModel = ViewModelProvider(this, Injection.provideViewModelFactory(requireContext()))
+//            .get(PopularMovieViewModel::class.java)
 
         viewModel.movies.observe(this, {
             adapter.submitList(it)

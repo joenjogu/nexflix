@@ -1,6 +1,5 @@
 package com.joenjogu.nexflix
 
-import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,7 +9,7 @@ import retrofit2.http.Query
 
 interface MoviesApiService {
     @GET("movie/")
-    suspend fun getMovie(@Query("id") params: Int): Result
+    suspend fun getMovie(@Query("id") params: Int): SearchResult
 
     @GET("movie/popular")
     suspend fun getPopularMovies(): SearchResponse
