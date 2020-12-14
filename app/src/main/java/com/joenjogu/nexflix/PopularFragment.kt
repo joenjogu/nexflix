@@ -10,18 +10,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.joenjogu.nexflix.databinding.FragmentPopularBinding
 import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class PopularFragment : Fragment() {
     private lateinit var binding: FragmentPopularBinding
 //    private lateinit var viewModel: PopularMovieViewModel
 
-    private val viewModel: PopularMovieViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onActivityCreated()"
-        }
-        ViewModelProvider(this, Injection.provideViewModelFactory(activity.application))
-            .get(PopularMovieViewModel::class.java)
-    }
+//    private val viewModel: PopularMovieViewModel by lazy {
+//        val activity = requireNotNull(this.activity) {
+//            "You can only access the viewModel after onActivityCreated()"
+//        }
+//        ViewModelProvider(this, Injection.provideViewModelFactory(activity.application))
+//            .get(PopularMovieViewModel::class.java)
+//    }
+
+    private val viewModel: PopularMovieViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

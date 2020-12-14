@@ -13,7 +13,8 @@ class NexflixApplication : Application() {
             modules(
                 networkModule,
                 databaseModule,
-                repositoryModule
+                repositoryModule,
+                viewModelModule
             )
         }
     }
