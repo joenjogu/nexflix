@@ -3,9 +3,9 @@ package com.joenjogu.nexflix
 import android.util.Log
 import androidx.lifecycle.LiveData
 
-class MovieRepository(private val apiService: MoviesApiService, private val movieDatabase: MovieDatabase) {
+class MovieRepository(private val apiService: MoviesApiService, private val movieDao: MovieDao) {
 
-    val movies: LiveData<List<Movie>> = movieDatabase.movieDao.getAllMovies()
+    val movies: LiveData<List<Movie>> = movieDao.getAllMovies()
 
     suspend fun getMovie(id: Int) {
         val response = apiService.getMovie(id)
@@ -20,7 +20,7 @@ class MovieRepository(private val apiService: MoviesApiService, private val movi
                 movies.add(result.toDomain())
             }
             Log.d("Repo", "getPopularMovies: $movies")
-            movieDatabase.movieDao.insertAllMovies(movies)
+            movieDao.insertAllMovies(movies)
             return movies
         } catch (exception: Throwable){
             Log.e("Repo", "getPopularMovies: ", exception)
