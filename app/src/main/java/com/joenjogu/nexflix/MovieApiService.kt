@@ -17,24 +17,4 @@ interface MoviesApiService {
     @GET("movie/top_rated")
     suspend fun getLatestMovies(@Query("api_key") apiKey: String): SearchResponse
 
-    companion object {
-        fun createService(): MoviesApiService {
-            val BASE_URL = "https://api.themoviedb.org/3/"
-
-            val logger = HttpLoggingInterceptor()
-            logger.level = HttpLoggingInterceptor.Level.BODY
-
-            val client = OkHttpClient.Builder()
-                .addInterceptor(logger)
-//                .addInterceptor(TokenInterceptor())
-                .build()
-
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .build()
-                .create(MoviesApiService::class.java)
-        }
-    }
 }
