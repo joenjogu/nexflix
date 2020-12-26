@@ -28,7 +28,18 @@ class MovieRepository(private val apiService: MoviesApiService, private val movi
         return movies
     }
 
-    suspend fun getTopRatedMovies() {
-
+    suspend fun getTrendingMovies(): MutableList<Movie> {
+        val trendingMovies = mutableListOf<Movie>()
+        try {
+            val response = apiService.getTrendingMovies("2d9aa26f9b71ca6d8a3db85d730e19a4")
+            val results = response.trendingResults
+            for (result in results) {
+                trendingMovies.add(result.toDomain())
+                return trendingMovies
+            }
+        } catch (exception: Throwable) {
+            Log.e("Repo", "getTrendingMovies: ", exception)
+        }
+        return trendingMovies
     }
 }
