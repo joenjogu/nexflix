@@ -7,4 +7,8 @@ val viewModelModule = module {
     viewModel {
         PopularMovieViewModel(repository = get())
     }
+
+    viewModel {
+        LatestMovieViewModel(repository = get())
+    }
 }

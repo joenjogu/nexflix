@@ -11,6 +11,6 @@ interface TrendingMovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllMovies(movies: List<TrendingMovie>)
 
-    @Query("SELECT * FROM movie")
+    @Query("SELECT * FROM trendingmovie")
     fun getAllMovies() : LiveData<List<TrendingMovie>>
 }

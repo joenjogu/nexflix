@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.joenjogu.nexflix.databinding.FragmentLatestBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class LatestFragment : Fragment() {
     private lateinit var binding: FragmentLatestBinding
+    private val viewModel: LatestMovieViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,6 +22,10 @@ class LatestFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_latest, container, false)
         val adapter = LatestMovieAdapter()
         binding.adapter = adapter
+
+        viewModel.trendingMovie.observe(this, {
+            adapter.submitList(it)
+        })
 
         return binding.root
     }
