@@ -3,9 +3,13 @@ package com.joenjogu.nexflix
 import android.util.Log
 import androidx.lifecycle.LiveData
 
-class MovieRepository(private val apiService: MoviesApiService, private val movieDao: MovieDao) {
+class MovieRepository(
+        private val apiService: MoviesApiService,
+        private val movieDao: MovieDao,
+        private val trendingMovieDao: TrendingMovieDao) {
 
     val movies: LiveData<List<Movie>> = movieDao.getAllMovies()
+    val trendingMovie: LiveData<List<TrendingMovie>> = trendingMovieDao.getAllMovies()
 
     suspend fun getMovie(id: Int) {
         val response = apiService.getMovie(id)
@@ -28,15 +32,16 @@ class MovieRepository(private val apiService: MoviesApiService, private val movi
         return movies
     }
 
-    suspend fun getTrendingMovies(): MutableList<Movie> {
-        val trendingMovies = mutableListOf<Movie>()
+    suspend fun getTrendingMovies(): MutableList<TrendingMovie> {
+        val trendingMovies = mutableListOf<TrendingMovie>()
         try {
             val response = apiService.getTrendingMovies("2d9aa26f9b71ca6d8a3db85d730e19a4")
             val results = response.trendingResults
             for (result in results) {
                 trendingMovies.add(result.toDomain())
-                return trendingMovies
             }
+            trendingMovieDao.insertAllMovies(trendingMovies)
+            return trendingMovies
         } catch (exception: Throwable) {
             Log.e("Repo", "getTrendingMovies: ", exception)
         }
