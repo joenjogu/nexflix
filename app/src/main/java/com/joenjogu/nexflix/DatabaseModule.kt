@@ -6,7 +6,9 @@ import org.koin.dsl.module
 
 val databaseModule = module {
 
-    single { provideDao(database = get()) }
+    single { provideMovieDao(database = get()) }
+
+    single { provideTrendingMovieDao(database = get()) }
 
     single {
         Room.databaseBuilder(
@@ -16,6 +18,10 @@ val databaseModule = module {
     }
 }
 
-private fun provideDao(database: MovieDatabase): MovieDao {
+private fun provideMovieDao(database: MovieDatabase): MovieDao {
     return database.movieDao
+}
+
+private fun provideTrendingMovieDao(database: MovieDatabase): TrendingMovieDao {
+    return database.trendingMovieDao
 }
