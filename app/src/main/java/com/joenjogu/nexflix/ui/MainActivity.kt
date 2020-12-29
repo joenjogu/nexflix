@@ -1,10 +1,12 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.joenjogu.nexflix.FragmentAdapter
+import com.joenjogu.nexflix.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

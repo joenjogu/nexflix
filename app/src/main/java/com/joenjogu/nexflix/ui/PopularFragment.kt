@@ -1,4 +1,4 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
+import com.joenjogu.nexflix.PopularMovieAdapter
+import com.joenjogu.nexflix.PopularMovieViewModel
+import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.databinding.FragmentPopularBinding
-import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PopularFragment : Fragment() {
