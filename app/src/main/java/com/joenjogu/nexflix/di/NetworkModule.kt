@@ -1,5 +1,6 @@
 package com.joenjogu.nexflix
 
+import com.joenjogu.nexflix.data.MoviesApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

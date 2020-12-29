@@ -1,7 +1,10 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.joenjogu.nexflix.models.Movie
+import com.joenjogu.nexflix.models.TrendingMovie
+import com.joenjogu.nexflix.toDomain
 
 class MovieRepository(
         private val apiService: MoviesApiService,

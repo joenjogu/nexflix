@@ -1,4 +1,4 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

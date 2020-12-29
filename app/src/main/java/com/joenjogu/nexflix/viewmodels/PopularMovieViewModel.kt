@@ -1,9 +1,8 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.joenjogu.nexflix.data.MovieRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 

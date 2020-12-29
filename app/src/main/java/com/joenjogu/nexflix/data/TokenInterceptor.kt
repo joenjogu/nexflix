@@ -1,4 +1,4 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.data
 
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.joenjogu.nexflix.LatestMovieAdapter
-import com.joenjogu.nexflix.LatestMovieViewModel
+import com.joenjogu.nexflix.adapters.LatestMovieAdapter
+import com.joenjogu.nexflix.viewmodels.LatestMovieViewModel
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.databinding.FragmentLatestBinding
 import org.koin.android.viewmodel.ext.android.viewModel

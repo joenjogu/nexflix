@@ -1,6 +1,9 @@
 package com.joenjogu.nexflix
 
 import androidx.room.Room
+import com.joenjogu.nexflix.data.MovieDao
+import com.joenjogu.nexflix.data.MovieDatabase
+import com.joenjogu.nexflix.data.TrendingMovieDao
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

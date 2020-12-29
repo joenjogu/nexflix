@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.joenjogu.nexflix.PopularMovieAdapter
-import com.joenjogu.nexflix.PopularMovieViewModel
+import com.joenjogu.nexflix.adapters.PopularMovieAdapter
+import com.joenjogu.nexflix.viewmodels.PopularMovieViewModel
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.databinding.FragmentPopularBinding
 import org.koin.android.viewmodel.ext.android.viewModel

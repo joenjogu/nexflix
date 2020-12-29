@@ -1,9 +1,9 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.viewmodels
 
-import android.accounts.NetworkErrorException
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.joenjogu.nexflix.data.MovieRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="adapter"
-            type="com.joenjogu.nexflix.PopularMovieAdapter" />
+            type="com.joenjogu.nexflix.adapters.PopularMovieAdapter" />
 
     </data>
     <FrameLayout

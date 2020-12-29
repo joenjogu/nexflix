@@ -1,5 +1,10 @@
 package com.joenjogu.nexflix
 
+import com.joenjogu.nexflix.models.Movie
+import com.joenjogu.nexflix.models.SearchResult
+import com.joenjogu.nexflix.models.TrendingMovie
+import com.joenjogu.nexflix.models.TrendingResult
+
 const val urlPrefix = "https://image.tmdb.org/t/p/w500/"
 fun SearchResult.toDomain(): Movie {
     return Movie(

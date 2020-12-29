@@ -1,4 +1,4 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.models
 
 import com.squareup.moshi.Json
 

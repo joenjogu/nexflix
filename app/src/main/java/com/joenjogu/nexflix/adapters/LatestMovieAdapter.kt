@@ -1,10 +1,11 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.joenjogu.nexflix.models.TrendingMovie
 import com.joenjogu.nexflix.databinding.LatestMovieListItemBinding
 
 class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestMovieViewHolder>(Comparison) {

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="com.joenjogu.nexflix.TrendingMovie" />
+            type="com.joenjogu.nexflix.models.TrendingMovie" />
 
     </data>
 

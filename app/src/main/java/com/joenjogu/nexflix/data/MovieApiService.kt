@@ -1,9 +1,8 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.data
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.joenjogu.nexflix.models.SearchResponse
+import com.joenjogu.nexflix.models.SearchResult
+import com.joenjogu.nexflix.models.TrendingResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
