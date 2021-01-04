@@ -14,5 +14,4 @@ class MovieDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie_detail, container, false)
     }
-
 }
