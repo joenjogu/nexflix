@@ -1,5 +1,6 @@
 package com.joenjogu.nexflix.data
 
+import com.joenjogu.nexflix.MovieResponse
 import com.joenjogu.nexflix.models.SearchResponse
 import com.joenjogu.nexflix.models.SearchResult
 import com.joenjogu.nexflix.models.TrendingResponse
@@ -8,7 +9,7 @@ import retrofit2.http.Query
 
 interface MoviesApiService {
     @GET("movie/")
-    suspend fun getMovie(@Query("id") params: Int): SearchResult
+    suspend fun getMovie(@Query("id") params: Int): MovieResponse
 
     @GET("movie/popular")
     suspend fun getPopularMovies(): SearchResponse

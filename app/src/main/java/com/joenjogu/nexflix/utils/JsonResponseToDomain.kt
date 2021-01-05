@@ -27,3 +27,14 @@ fun TrendingResult.toDomain(): TrendingMovie {
             this.release_date
     )
 }
+
+fun MovieResponse.toDomain(): Movie {
+    return Movie(
+        this.id,
+        urlPrefix + this.poster_path,
+        this.title,
+        this.overview,
+        this.vote_average,
+        this.release_date
+    )
+}

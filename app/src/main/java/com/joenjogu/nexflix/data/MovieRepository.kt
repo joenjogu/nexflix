@@ -13,9 +13,17 @@ class MovieRepository(
 
     val movies: LiveData<List<Movie>> = movieDao.getAllMovies()
     val trendingMovie: LiveData<List<TrendingMovie>> = trendingMovieDao.getAllMovies()
+    // expose movie from db
+    val movie: LiveData<Movie> = movieDao.getMovieById(id = 0)
 
-    suspend fun getMovie(id: Int) {
-        val response = apiService.getMovie(id)
+    suspend fun getMovie(id: Int): Movie {
+        try {
+            val response = apiService.getMovie(id)
+            return response.toDomain()
+        } catch (exception: Throwable){
+            Log.e("getMovie", "getMovie: ", exception )
+            throw exception
+        }
     }
 
     suspend fun getPopularMovies(): MutableList<Movie> {
