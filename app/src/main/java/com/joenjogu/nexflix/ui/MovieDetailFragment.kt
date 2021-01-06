@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.joenjogu.nexflix.R
+import com.joenjogu.nexflix.adapters.MovieDetailAdapter
 import com.joenjogu.nexflix.databinding.FragmentMovieDetailBinding
 import com.joenjogu.nexflix.databinding.MovieDetailRecyclerviewBinding
 import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
@@ -21,12 +22,14 @@ class MovieDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
 
+        val adapter = MovieDetailAdapter()
+
         movieDetailViewModel.movie.observe(this, {
             detailBinding.movie = it
         })
 
         // set adapter
-        detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter
+        detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
         return detailBinding.root
     }
 }
