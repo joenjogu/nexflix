@@ -8,8 +8,8 @@
         <variable
             name="adapter"
             type="com.joenjogu.nexflix.adapters.PopularMovieAdapter" />
-
     </data>
+
     <FrameLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content">
