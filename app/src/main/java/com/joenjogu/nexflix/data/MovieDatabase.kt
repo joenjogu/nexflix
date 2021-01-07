@@ -6,7 +6,7 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.RecommendedMovie
 import com.joenjogu.nexflix.models.TrendingMovie
 
-@Database(entities = [Movie::class, TrendingMovie::class, RecommendedMovie::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class, TrendingMovie::class, RecommendedMovie::class], version = 2, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract val movieDao: MovieDao
