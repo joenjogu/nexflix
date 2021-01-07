@@ -1,10 +1,12 @@
 package com.joenjogu.nexflix.data
 
 import com.joenjogu.nexflix.MovieResponse
+import com.joenjogu.nexflix.RecommendationResponse
 import com.joenjogu.nexflix.models.SearchResponse
 import com.joenjogu.nexflix.models.SearchResult
 import com.joenjogu.nexflix.models.TrendingResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MoviesApiService {
@@ -19,5 +21,11 @@ interface MoviesApiService {
 
     @GET("trending/movie/day")
     suspend fun getTrendingMovies(@Query("api_key") apiKey: String): TrendingResponse
+
+    @GET("movie/{movie_id}/recommendations")
+    suspend fun getRecommendedMovies(
+            @Path("movie_id") movieId: Int,
+            @Query("api_key") apiKey: String
+    ): RecommendationResponse
 
 }

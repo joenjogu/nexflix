@@ -24,7 +24,7 @@ class MovieDetailAdapter : ListAdapter<Movie, MovieDetailAdapter.MovieDetailView
         val movie = getItem(position)
 
         // fix movie detail list item
-        holder.binding.movieDetailRecyclerview
+        holder.binding.movieDetailRecyclerview.adapter
         holder.binding.executePendingBindings()
     }
 
