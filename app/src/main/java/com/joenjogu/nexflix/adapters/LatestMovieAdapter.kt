@@ -1,6 +1,7 @@
 package com.joenjogu.nexflix.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,7 +12,13 @@ import com.joenjogu.nexflix.databinding.LatestMovieListItemBinding
 class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestMovieViewHolder>(Comparison) {
 
     class LatestMovieViewHolder(val binding: LatestMovieListItemBinding)
-        : RecyclerView.ViewHolder(binding.root)
+        : RecyclerView.ViewHolder(binding.root) {
+            fun bind(item: TrendingMovie, listener: View.OnClickListener) {
+                binding.movie = item
+                binding.clickListener = listener
+                binding.executePendingBindings()
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestMovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -22,8 +29,14 @@ class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestM
 
     override fun onBindViewHolder(holder: LatestMovieViewHolder, position: Int) {
         val movie = getItem(position)
-        holder.binding.movie = movie
-        holder.binding.executePendingBindings()
+        holder.bind(movie, createOnClickListener(movie.id))
+
+    }
+
+    private fun createOnClickListener(movieId: Int): View.OnClickListener {
+        return View.OnClickListener {
+            // implement navigation direction with safeargs
+        }
     }
 
     companion object Comparison : DiffUtil.ItemCallback<TrendingMovie>() {

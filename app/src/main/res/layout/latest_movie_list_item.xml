@@ -8,6 +8,10 @@
             name="movie"
             type="com.joenjogu.nexflix.models.TrendingMovie" />
 
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +20,7 @@
         android:padding="8dp">
 
         <androidx.cardview.widget.CardView
+            android:onClick="@{clickListener}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="10dp"
