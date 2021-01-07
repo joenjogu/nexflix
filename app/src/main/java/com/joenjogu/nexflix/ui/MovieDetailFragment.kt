@@ -20,7 +20,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MovieDetailFragment : Fragment() {
     private lateinit var detailBinding: FragmentMovieDetailBinding
-    private lateinit var movieBinding: PopularMovieListItemBinding
     private val movieDetailViewModel: MovieDetailViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

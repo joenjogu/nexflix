@@ -1,6 +1,6 @@
 package com.joenjogu.nexflix.utils
 
-import com.joenjogu.nexflix.RecommendedResult
+import com.joenjogu.nexflix.models.RecommendedResult
 import com.joenjogu.nexflix.models.*
 
 const val urlPrefix = "https://image.tmdb.org/t/p/w500/"

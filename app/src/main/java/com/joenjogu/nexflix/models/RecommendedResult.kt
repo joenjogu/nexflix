@@ -1,4 +1,4 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.models
 
 data class RecommendedResult(
     val adult: Boolean,

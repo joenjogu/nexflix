@@ -8,11 +8,6 @@ import java.io.IOException
 
 class PopularMovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
-//    private val _movies = MutableLiveData<List<Movie>>()
-//
-//    val movies: LiveData<List<Movie>> =
-//        _movies
-
     val movies = repository.movies
 
     init {
