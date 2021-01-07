@@ -1,4 +1,4 @@
-package com.joenjogu.nexflix
+package com.joenjogu.nexflix.di
 
 import com.joenjogu.nexflix.data.MoviesApiService
 import okhttp3.OkHttpClient
