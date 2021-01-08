@@ -46,9 +46,20 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager"
+    <fragment
+        android:id="@+id/nav_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+<!--        fix viewpager-->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </fragment>
 
 </LinearLayout>

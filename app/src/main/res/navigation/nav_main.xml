@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/latestFragment">
+    <fragment
+        android:id="@+id/latestFragment"
+        android:name="com.joenjogu.nexflix.ui.LatestFragment"
+        android:label="LatestFragment" >
+        <action
+            android:id="@+id/action_latestFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularFragment"
+        android:name="com.joenjogu.nexflix.ui.PopularFragment"
+        android:label="PopularFragment" >
+        <action
+            android:id="@+id/action_popularFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.joenjogu.nexflix.ui.MovieDetailFragment"
+        android:label="MovieDetailFragment" >
+        <action
+            android:id="@+id/action_movieDetailFragment_to_latestFragment"
+            app:destination="@id/latestFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_popularFragment"
+            app:destination="@id/popularFragment"/>
+        <argument
+            android:name="movieId"
+            app:argType="integer"/>
+    </fragment>
+</navigation>
