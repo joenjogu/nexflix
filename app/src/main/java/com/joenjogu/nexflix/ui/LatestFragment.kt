@@ -26,7 +26,7 @@ class LatestFragment : Fragment() {
         val adapter = LatestMovieAdapter()
         binding.adapter = adapter
 
-        viewModel.trendingMovie.observe(this, {
+        viewModel.trendingMovie.observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
 

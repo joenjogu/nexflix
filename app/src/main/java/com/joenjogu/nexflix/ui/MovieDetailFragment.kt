@@ -29,11 +29,11 @@ class MovieDetailFragment : Fragment() {
         val adapter = PopularMovieAdapter()
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
 
-        movieDetailViewModel.movie.observe(this, {
+        movieDetailViewModel.movie.observe(viewLifecycleOwner, {
             detailBinding.movie = it
         })
 
-        movieDetailViewModel.recommendedMovies.observe(this, { recommendedMovie ->
+        movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner, { recommendedMovie ->
             val movieList = mutableListOf<Movie>()
             for (movie in recommendedMovie) {
                 val converted = movie.toPopularMovie()

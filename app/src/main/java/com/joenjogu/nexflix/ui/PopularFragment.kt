@@ -26,7 +26,7 @@ class PopularFragment : Fragment() {
         val adapter = PopularMovieAdapter()
         binding.adapter = adapter
 
-        viewModel.movies.observe(this, {
+        viewModel.movies.observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
 
