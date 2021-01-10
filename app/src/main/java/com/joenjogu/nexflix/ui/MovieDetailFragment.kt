@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.adapters.MovieDetailAdapter
 import com.joenjogu.nexflix.adapters.PopularMovieAdapter
@@ -21,9 +23,11 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MovieDetailFragment : Fragment() {
     private lateinit var detailBinding: FragmentMovieDetailBinding
     private val movieDetailViewModel: MovieDetailViewModel by viewModel()
+    private val args: MovieDetailFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+//        movieDetailViewModel.id = args.movieId.toString()
         // Inflate the layout for this fragment
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
         val adapter = PopularMovieAdapter()

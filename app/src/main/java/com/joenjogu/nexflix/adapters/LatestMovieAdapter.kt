@@ -3,11 +3,13 @@ package com.joenjogu.nexflix.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joenjogu.nexflix.models.TrendingMovie
 import com.joenjogu.nexflix.databinding.LatestMovieListItemBinding
+import com.joenjogu.nexflix.ui.LatestFragmentDirections
 
 class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestMovieViewHolder>(Comparison) {
 
@@ -36,6 +38,8 @@ class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestM
     private fun createOnClickListener(movieId: Int): View.OnClickListener {
         return View.OnClickListener {
             // implement navigation direction with safeargs
+            val direction = LatestFragmentDirections.actionLatestFragmentToMovieDetailFragment(movieId)
+            it.findNavController().navigate(direction)
         }
     }
 

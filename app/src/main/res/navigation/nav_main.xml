@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/latestFragment">
+    app:startDestination="@id/viewPagerFragment">
     <fragment
         android:id="@+id/latestFragment"
         android:name="com.joenjogu.nexflix.ui.LatestFragment"
@@ -32,6 +32,18 @@
             app:destination="@id/popularFragment"/>
         <argument
             android:name="movieId"
-            app:argType="integer"/>
+            app:argType="integer"
+            android:defaultValue="13" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.joenjogu.nexflix.ui.ViewPagerFragment"
+        android:label="ViewPagerFragment" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_latestFragment"
+            app:destination="@id/latestFragment" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_popularFragment"
+            app:destination="@id/popularFragment" />
     </fragment>
 </navigation>

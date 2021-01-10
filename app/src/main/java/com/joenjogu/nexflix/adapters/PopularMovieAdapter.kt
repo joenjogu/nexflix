@@ -3,11 +3,14 @@ package com.joenjogu.nexflix.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
+import com.joenjogu.nexflix.ui.PopularFragmentDirections
+import com.joenjogu.nexflix.ui.ViewPagerFragmentDirections
 
 class PopularMovieAdapter : ListAdapter<Movie, PopularMovieAdapter.PopularMovieViewHolder>(Comparison) {
 
@@ -35,6 +38,10 @@ class PopularMovieAdapter : ListAdapter<Movie, PopularMovieAdapter.PopularMovieV
     private fun createOnClickListener(movieId: Int): View.OnClickListener {
         return View.OnClickListener {
             // implement navigation direction with safeargs
+            val dir = ViewPagerFragmentDirections.actionViewPagerFragmentToPopularFragment()
+            val direction = PopularFragmentDirections.actionPopularFragmentToMovieDetailFragment(movieId)
+            it.findNavController().navigate(dir)
+            it.findNavController().navigate(direction)
         }
     }
 
