@@ -1,11 +1,13 @@
 package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.observe
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.joenjogu.nexflix.R
@@ -34,18 +36,19 @@ class MovieDetailFragment : Fragment() {
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
 //        val ad = detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter
 
-        movieDetailViewModel.movie.observe(viewLifecycleOwner, {
+        movieDetailViewModel.movie.observe(viewLifecycleOwner) {
             detailBinding.movie = it
-        })
+            Log.d("Movie", "onCreateView: {${it.imageUrl}, ${it.id}}")
+        }
 
-        movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner, { recommendedMovie ->
+        movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner) { recommendedMovie ->
             val movieList = mutableListOf<Movie>()
             for (movie in recommendedMovie) {
                 val converted = movie.toPopularMovie()
                 movieList.add(converted)
             }
             adapter.submitList(movieList)
-        })
+        }
 
         return detailBinding.root
     }
