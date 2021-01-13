@@ -32,6 +32,7 @@ class MovieDetailFragment : Fragment() {
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
         val adapter = PopularMovieAdapter()
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
+//        val ad = detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter
 
         movieDetailViewModel.movie.observe(viewLifecycleOwner, {
             detailBinding.movie = it
