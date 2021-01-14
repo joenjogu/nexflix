@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import com.joenjogu.nexflix.adapters.PopularMovieAdapter
 import com.joenjogu.nexflix.viewmodels.PopularMovieViewModel
 import com.joenjogu.nexflix.R
@@ -26,9 +27,9 @@ class PopularFragment : Fragment() {
         val adapter = PopularMovieAdapter()
         binding.adapter = adapter
 
-        viewModel.movies.observe(viewLifecycleOwner, {
+        viewModel.movies.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
 
         return binding.root
     }

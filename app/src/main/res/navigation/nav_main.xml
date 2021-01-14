@@ -5,45 +5,23 @@
     android:id="@+id/nav_main"
     app:startDestination="@id/viewPagerFragment">
     <fragment
-        android:id="@+id/latestFragment"
-        android:name="com.joenjogu.nexflix.ui.LatestFragment"
-        android:label="LatestFragment" >
-        <action
-            android:id="@+id/action_latestFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/popularFragment"
-        android:name="com.joenjogu.nexflix.ui.PopularFragment"
-        android:label="PopularFragment" >
-        <action
-            android:id="@+id/action_popularFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.joenjogu.nexflix.ui.MovieDetailFragment"
         android:label="MovieDetailFragment" >
-        <action
-            android:id="@+id/action_movieDetailFragment_to_latestFragment"
-            app:destination="@id/latestFragment" />
-        <action
-            android:id="@+id/action_movieDetailFragment_to_popularFragment"
-            app:destination="@id/popularFragment"/>
         <argument
             android:name="movieId"
             app:argType="integer"
             android:defaultValue="13" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.joenjogu.nexflix.ui.ViewPagerFragment"
         android:label="ViewPagerFragment" >
         <action
-            android:id="@+id/action_viewPagerFragment_to_latestFragment"
-            app:destination="@id/latestFragment" />
-        <action
-            android:id="@+id/action_viewPagerFragment_to_popularFragment"
-            app:destination="@id/popularFragment" />
+            android:id="@+id/action_viewPagerFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 </navigation>

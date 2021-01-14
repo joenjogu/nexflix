@@ -12,7 +12,7 @@ import java.io.IOException
 class MovieDetailViewModel(private val repository: MovieRepository) : ViewModel() {
 
     // get movie id from safArgs
-    val id: String = "13"
+    val id: String = "122"
     val movieId = id.toInt()
     val movie = getMovieById(movieId)
     val recommendedMovies = repository.recommendedMovies
