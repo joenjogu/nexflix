@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import androidx.navigation.NavArgs
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.adapters.MovieDetailAdapter
@@ -48,6 +49,10 @@ class MovieDetailFragment : Fragment() {
                 movieList.add(converted)
             }
             adapter.submitList(movieList)
+        }
+        val direction = MovieDetailFragmentDirections.actionMovieDetailFragmentToViewPagerFragment()
+        detailBinding.toolbar.setNavigationOnClickListener {
+            it.findNavController().navigate(direction)
         }
 
         return detailBinding.root
