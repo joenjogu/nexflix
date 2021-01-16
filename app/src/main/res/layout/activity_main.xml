@@ -7,26 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/app_bar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="@string/app_name"
-                app:menu="@menu/top_app_bar"
-                />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
     <fragment
         android:id="@+id/nav_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
