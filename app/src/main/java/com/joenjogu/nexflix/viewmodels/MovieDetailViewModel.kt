@@ -1,5 +1,6 @@
 package com.joenjogu.nexflix.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +13,7 @@ import java.io.IOException
 class MovieDetailViewModel(private val repository: MovieRepository) : ViewModel() {
 
     // get movie id from safArgs
-    val id: String = "122"
+    val id: String = "155"
     val movieId = id.toInt()
     val movie = getMovieById(movieId)
     val recommendedMovies = repository.recommendedMovies
@@ -22,6 +23,7 @@ class MovieDetailViewModel(private val repository: MovieRepository) : ViewModel(
     }
 
     private fun getMovieById(movieId: Int): LiveData<Movie> {
+        Log.d("MovieDetailViewModel", "getMovieById: ${repository.getMovie(movieId)}")
         return repository.getMovie(movieId)
     }
 
