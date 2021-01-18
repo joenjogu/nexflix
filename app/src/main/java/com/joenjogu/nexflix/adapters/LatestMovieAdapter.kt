@@ -38,7 +38,7 @@ class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestM
     private fun createOnClickListener(movieId: Int): View.OnClickListener {
         return View.OnClickListener {
             // implement navigation direction with safeargs
-            val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToMovieDetailFragment()
+            val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToMovieDetailFragment(movieId)
             it.findNavController().navigate(direction)
         }
     }

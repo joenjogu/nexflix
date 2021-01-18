@@ -30,12 +30,12 @@ class MovieDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-//        movieDetailViewModel.id = args.movieId.toString()
+        val movieId = args.movieId
+        movieDetailViewModel.id = movieId.toString()
         // Inflate the layout for this fragment
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
         val adapter = PopularMovieAdapter()
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
-//        val ad = detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter
 
         movieDetailViewModel.movie.observe(viewLifecycleOwner) {
             detailBinding.movie = it
