@@ -16,6 +16,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        MovieDetailViewModel(repository = get())
+        (id: String) ->
+        MovieDetailViewModel(repository = get(), id)
     }
 }

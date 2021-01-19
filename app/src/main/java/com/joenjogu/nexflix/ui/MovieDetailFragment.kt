@@ -21,17 +21,19 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.RecommendedMovie
 import com.joenjogu.nexflix.utils.toPopularMovie
 import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class MovieDetailFragment : Fragment() {
     private lateinit var detailBinding: FragmentMovieDetailBinding
-    private val movieDetailViewModel: MovieDetailViewModel by viewModel()
+
     private val args: MovieDetailFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val movieId = args.movieId
-        movieDetailViewModel.id = movieId.toString()
+        val movieDetailViewModel: MovieDetailViewModel by inject { parametersOf(args.movieId.toString())}
+
         // Inflate the layout for this fragment
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
         val adapter = PopularMovieAdapter()

@@ -10,10 +10,9 @@ import com.joenjogu.nexflix.models.RecommendedMovie
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class MovieDetailViewModel(private val repository: MovieRepository) : ViewModel() {
+class MovieDetailViewModel(private val repository: MovieRepository, val id: String) : ViewModel() {
 
     // get movie id from safArgs
-    lateinit var id: String
     val movieId = id.toInt()
     val movie = getMovieById(movieId)
     val recommendedMovies = repository.recommendedMovies
