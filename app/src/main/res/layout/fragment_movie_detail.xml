@@ -62,7 +62,7 @@
             android:layout_gravity="bottom"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom"
-            android:layout_margin="16dp">
+            android:layout_marginTop="50dp">
 
             <TextView
                 android:id="@+id/movie_description"
@@ -71,6 +71,15 @@
                 android:layout_height="wrap_content" />
 
         </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/recyclerview_layout"
+            app:layout_anchorGravity="top"
+            android:layout_margin="20dp"
+            android:text="@string/recommended_movies"
+            style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
         <include
             layout="@layout/movie_detail_recyclerview"
