@@ -10,6 +10,13 @@
 
     </data>
 
+    <data>
+        <variable
+            name="fabOnClick"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
