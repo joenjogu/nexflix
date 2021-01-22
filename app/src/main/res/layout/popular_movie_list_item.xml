@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="10dp"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="6dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -33,9 +33,9 @@
                 <ImageView
                     android:id="@+id/movie_poster"
                     app:setImageUrl="@{movie.imageUrl}"
-                    android:scaleType="centerCrop"
+                    android:scaleType="centerInside"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="245dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -50,7 +50,7 @@
                     android:textAlignment="center"
                     android:textSize="21sp"
                     android:textStyle="bold"
-                    android:maxWidth="100sp"
+                    android:textAllCaps="true"
                     android:ellipsize="end"
                     android:maxLines="2"
                     app:layout_constraintEnd_toEndOf="parent"
