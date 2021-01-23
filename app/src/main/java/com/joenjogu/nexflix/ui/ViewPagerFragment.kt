@@ -2,6 +2,7 @@ package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -34,5 +35,22 @@ class ViewPagerFragment : Fragment() {
             }
             viewPager.setCurrentItem(0, true)
         }.attach()
+
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_search -> {
+                // search function
+                return true
+            }
+            R.id.menu_settings -> {
+                //pref manager fragment
+               return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return false
     }
 }
