@@ -24,7 +24,7 @@ class PopularFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_popular, container, false)
-        val adapter = PopularMovieAdapter()
+        val adapter = PopularMovieAdapter(activity)
         binding.adapter = adapter
 
         viewModel.movies.observe(viewLifecycleOwner) {
