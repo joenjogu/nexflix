@@ -16,6 +16,7 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
 import com.joenjogu.nexflix.ui.MovieDetailFragmentDirections
 import com.joenjogu.nexflix.ui.ViewPagerFragmentDirections
+import java.lang.IllegalArgumentException
 
 class PopularMovieAdapter(val context: Context?) : ListAdapter<Movie, PopularMovieAdapter.PopularMovieViewHolder>(Comparison) {
 
@@ -43,20 +44,20 @@ class PopularMovieAdapter(val context: Context?) : ListAdapter<Movie, PopularMov
     private fun createOnClickListener(movieId: Int): View.OnClickListener {
         return View.OnClickListener {
             // implement navigation direction with safeargs
-//
-            val fragmentManager = (context as AppCompatActivity).supportFragmentManager
-            val navHostFragment = fragmentManager.findFragmentById(R.id.nav_fragment)
-            if (navHostFragment != null) {
-                val currentFragment = navHostFragment.childFragmentManager.fragments[0]
-
-                if (currentFragment.id == R.layout.fragment_movie_detail) {
+            when (it.findNavController().currentDestination?.id) {
+                R.id.movieDetailFragment -> {
                     val direction = MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(movieId)
                     it.findNavController().navigate(direction)
                 }
+                R.id.viewPagerFragment -> {
+                    val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToMovieDetailFragment(movieId)
+                    it.findNavController().navigate(direction)
+                }
+                else -> {
+                    throw IllegalArgumentException("Navigation Destination Not Found")
+                }
             }
-            Log.d("PopularMovieAdapter", "createOnClickListener: ${it.findNavController().currentDestination?.id}")
-            val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToMovieDetailFragment(movieId)
-            it.findNavController().navigate(direction)
+//            Log.d("PopularMovieAdapter", "createOnClickListener: ${it.findNavController().currentDestination?.id}, ${R.id.movieDetailFragment}")
         }
     }
 
