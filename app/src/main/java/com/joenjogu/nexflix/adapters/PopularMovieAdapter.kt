@@ -57,7 +57,6 @@ class PopularMovieAdapter(val context: Context?) : ListAdapter<Movie, PopularMov
                     throw IllegalArgumentException("Navigation Destination Not Found")
                 }
             }
-//            Log.d("PopularMovieAdapter", "createOnClickListener: ${it.findNavController().currentDestination?.id}, ${R.id.movieDetailFragment}")
         }
     }
 
