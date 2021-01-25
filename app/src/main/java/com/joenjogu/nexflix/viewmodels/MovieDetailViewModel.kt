@@ -22,8 +22,12 @@ class MovieDetailViewModel(private val repository: MovieRepository, val id: Stri
     }
 
     private fun getMovieById(movieId: Int): LiveData<Movie> {
-        Log.d("MovieDetailViewModel", "getMovieById: ${repository.getMovie(movieId)}")
-        return repository.getMovie(movieId)
+//        Log.d("MovieDetailViewModel", "getMovieById: ${repository.getMovie(movieId)}")
+        viewModelScope.launch {
+            repository.getMovie(movieId)
+        }
+        //fix this
+        return
     }
 
     private fun refreshDataFromRepository(movieId: Int) {

@@ -2,6 +2,7 @@ package com.joenjogu.nexflix.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.RecommendedMovie
 import com.joenjogu.nexflix.models.TrendingMovie
@@ -17,8 +18,24 @@ class MovieRepository(
     val trendingMovie: LiveData<List<TrendingMovie>> = trendingMovieDao.getAllMovies()
     val recommendedMovies: LiveData<List<RecommendedMovie>> = recommendedMovieDao.getAllMovies()
 
-    fun getMovie(id: Int): LiveData<Movie> {
-        return movieDao.getMovieById(id)
+    suspend fun getMovie(id: Int): LiveData<Movie> {
+        val repoMovie = movieDao.getMovieById(id)
+
+        if ( repoMovie.value != null) {
+            return repoMovie
+        } else {
+            try {
+                //fix live data
+                val result = apiService.getMovie(id)
+                val movie = result.toDomain()
+                val mutableLiveMovie = MutableLiveData<Movie>()
+                mutableLiveMovie.value = movie
+                return mutableLiveMovie
+            } catch (exception: Throwable) {
+                Log.e("Repo", "getPopularMovies: ", exception)
+            }
+            return repoMovie
+        }
     }
 
     suspend fun getPopularMovies(): MutableList<Movie> {
@@ -54,15 +71,15 @@ class MovieRepository(
         return trendingMovies
     }
 
-    suspend fun getRecommendedMovies(movieId: Int): MutableList<RecommendedMovie> {
-        val recommendedMovies = mutableListOf<RecommendedMovie>()
+    suspend fun getRecommendedMovies(movieId: Int): MutableList<Movie> {
+        val recommendedMovies = mutableListOf<Movie>()
         try {
             val response = apiService.getRecommendedMovies(movieId, "2d9aa26f9b71ca6d8a3db85d730e19a4")
             val results = response.recommendationResults
             for (result in results) {
                 recommendedMovies.add(result.toDomain())
             }
-            recommendedMovieDao.insertRecommendedMovies(recommendedMovies)
+            movieDao.insertAllMovies(recommendedMovies)
         } catch (exception: Throwable) {
             Log.e("getRecommendedMovies", "getRecommendedMovies: ", exception)
         }

@@ -26,8 +26,8 @@ fun TrendingResult.toDomain(): TrendingMovie {
     )
 }
 
-fun RecommendedResult.toDomain(): RecommendedMovie {
-    return RecommendedMovie(
+fun RecommendedResult.toDomain(): Movie {
+    return Movie(
         this.id,
         urlPrefix + this.poster_path,
         this.title,
