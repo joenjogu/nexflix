@@ -18,23 +18,27 @@ class MovieRepository(
     val trendingMovie: LiveData<List<TrendingMovie>> = trendingMovieDao.getAllMovies()
     val recommendedMovies: LiveData<List<RecommendedMovie>> = recommendedMovieDao.getAllMovies()
 
-    suspend fun getMovie(id: Int): LiveData<Movie> {
-        val repoMovie = movieDao.getMovieById(id)
+    private val _movie = MutableLiveData<Movie>()
+    val movie: LiveData<Movie>
+        get() = _movie
 
-        if ( repoMovie.value != null) {
+    suspend fun getMovie(id: Int): Movie {
+        val repoMovie = movieDao.getMovieById(id)
+        Log.d("Repo", "getMovie: movie ID $id, ${repoMovie}")
+
+        if ( repoMovie != null) {
             return repoMovie
         } else {
             try {
                 //fix live data
-                val result = apiService.getMovie(id)
-                val movie = result.toDomain()
-                val mutableLiveMovie = MutableLiveData<Movie>()
-                mutableLiveMovie.value = movie
-                return mutableLiveMovie
+                val result = apiService.getMovie(id, "2d9aa26f9b71ca6d8a3db85d730e19a4")
+                return result.toDomain()
             } catch (exception: Throwable) {
-                Log.e("Repo", "getPopularMovies: ", exception)
+                Log.e("GetMovie", "getMovie: ", exception)
             }
-            return repoMovie
+            return Movie(0,
+                    "https://image.tmdb.org/t/p/w500//biznhvfedHPp9GKjlVFXH6OZtyU.jpg",
+                    "NULL", "NULL", 0.0, "NULL")
         }
     }
 
