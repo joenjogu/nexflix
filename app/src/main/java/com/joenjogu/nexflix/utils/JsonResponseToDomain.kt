@@ -4,7 +4,7 @@ import com.joenjogu.nexflix.models.RecommendedResult
 import com.joenjogu.nexflix.models.*
 
 const val urlPrefix = "https://image.tmdb.org/t/p/w500/"
-fun SearchResult.toDomain(): Movie {
+fun MovieResult.toDomain(): Movie {
     return Movie(
         this.id,
         urlPrefix + this.poster_path,
