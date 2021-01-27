@@ -6,12 +6,13 @@ import com.joenjogu.nexflix.models.*
 const val urlPrefix = "https://image.tmdb.org/t/p/w500/"
 fun MovieResult.toDomain(): Movie {
     return Movie(
-        this.id,
-        urlPrefix + this.poster_path,
-        this.title,
-        this.overview,
-        this.vote_average,
-        this.release_date
+            this.id,
+            urlPrefix + this.poster_path,
+            this.title,
+            this.overview,
+            this.vote_average,
+            this.release_date,
+            Category.TopRated
     )
 }
 
@@ -22,20 +23,21 @@ fun TrendingResult.toDomain(): TrendingMovie {
             this.title,
             this.overview,
             this.vote_average,
-            this.release_date
+            this.release_date,
+            Category.Trending
     )
 }
 
-fun RecommendedResult.toDomain(): Movie {
-    return Movie(
-        this.id,
-        urlPrefix + this.poster_path,
-        this.title,
-        this.overview,
-        this.vote_average,
-        this.release_date
-    )
-}
+//fun RecommendedResult.toDomain(): Movie {
+//    return Movie(
+//        this.id,
+//        urlPrefix + this.poster_path,
+//        this.title,
+//        this.overview,
+//        this.vote_average,
+//        this.release_date
+//    )
+//}
 
 fun RecommendedMovie.toPopularMovie(): Movie {
     return Movie(
