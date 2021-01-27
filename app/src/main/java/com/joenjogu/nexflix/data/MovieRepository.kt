@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.RecommendedMovie
 import com.joenjogu.nexflix.models.TrendingMovie
+import com.joenjogu.nexflix.utils.Category
 import com.joenjogu.nexflix.utils.toDomain
 
 class MovieRepository(
@@ -38,15 +39,15 @@ class MovieRepository(
             }
             return Movie(0,
                     "https://image.tmdb.org/t/p/w500//biznhvfedHPp9GKjlVFXH6OZtyU.jpg",
-                    "NULL", "NULL", 0.0, "NULL")
+                    "NULL", "NULL", 0.0, "NULL", Category.Recommended)
         }
     }
 
     suspend fun getPopularMovies(): MutableList<Movie> {
         val movies = mutableListOf<Movie>()
         try {
-            val response = apiService.getLatestMovies("2d9aa26f9b71ca6d8a3db85d730e19a4")
-            val results = response.searchResults
+            val response = apiService.getTopMovies("2d9aa26f9b71ca6d8a3db85d730e19a4")
+            val results = response.movieResults
             for (result in results) {
                 movies.add(result.toDomain())
             }
@@ -79,7 +80,7 @@ class MovieRepository(
         val recommendedMovies = mutableListOf<Movie>()
         try {
             val response = apiService.getRecommendedMovies(movieId, "2d9aa26f9b71ca6d8a3db85d730e19a4")
-            val results = response.recommendationResults
+            val results = response.movieResults
             for (result in results) {
                 recommendedMovies.add(result.toDomain())
             }

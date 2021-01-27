@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class RecommendationResponse(
         val page: Int,
-        @field:Json(name = "results") val recommendationResults: List<RecommendedResult>,
+        @field:Json(name = "results") val recommendationResults: List<MovieResult>,
         val total_pages: Int,
         val total_results: Int
 )

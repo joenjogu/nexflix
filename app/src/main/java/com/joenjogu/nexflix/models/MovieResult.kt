@@ -1,6 +1,6 @@
 package com.joenjogu.nexflix.models
 
-data class SearchResult(
+data class MovieResult(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
