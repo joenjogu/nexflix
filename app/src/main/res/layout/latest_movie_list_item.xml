@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="com.joenjogu.nexflix.models.TrendingMovie" />
+            type="com.joenjogu.nexflix.models.Movie" />
 
         <variable
             name="clickListener"

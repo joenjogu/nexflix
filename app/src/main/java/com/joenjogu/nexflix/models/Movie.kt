@@ -13,5 +13,5 @@ data class Movie(
     val overview: String,
     val rating: Double,
     val released: String,
-    val category: Category
+    val category: Category = Category.TopRated
 )

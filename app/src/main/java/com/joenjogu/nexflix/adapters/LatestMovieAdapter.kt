@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joenjogu.nexflix.models.TrendingMovie
 import com.joenjogu.nexflix.databinding.LatestMovieListItemBinding
+import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.ui.ViewPagerFragmentDirections
 
-class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestMovieViewHolder>(Comparison) {
+class LatestMovieAdapter : ListAdapter<Movie, LatestMovieAdapter.LatestMovieViewHolder>(Comparison) {
 
     class LatestMovieViewHolder(val binding: LatestMovieListItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
-            fun bind(item: TrendingMovie, listener: View.OnClickListener) {
+            fun bind(item: Movie, listener: View.OnClickListener) {
                 binding.movie = item
                 binding.clickListener = listener
                 binding.executePendingBindings()
@@ -43,12 +44,12 @@ class LatestMovieAdapter : ListAdapter<TrendingMovie, LatestMovieAdapter.LatestM
         }
     }
 
-    companion object Comparison : DiffUtil.ItemCallback<TrendingMovie>() {
-        override fun areItemsTheSame(oldItem: TrendingMovie, newItem: TrendingMovie): Boolean {
+    companion object Comparison : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: TrendingMovie, newItem: TrendingMovie): Boolean {
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
         }
 

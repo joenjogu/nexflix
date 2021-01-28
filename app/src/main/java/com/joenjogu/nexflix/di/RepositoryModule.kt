@@ -7,8 +7,7 @@ val repositoryModule = module {
 
     single { MovieRepository(
             apiService = get(),
-            movieDao = get(),
-            trendingMovieDao = get(),
-            recommendedMovieDao = get())
+            movieDao = get()
+    )
     }
 }
