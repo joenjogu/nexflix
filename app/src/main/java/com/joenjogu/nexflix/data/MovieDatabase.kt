@@ -7,7 +7,7 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.RecommendedMovie
 import com.joenjogu.nexflix.models.TrendingMovie
 
-@Database(entities = [Movie::class], version = 2, exportSchema = false)
+@Database(entities = [Movie::class], version = 3, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class MovieDatabase : RoomDatabase() {
 
