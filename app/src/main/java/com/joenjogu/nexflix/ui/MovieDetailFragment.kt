@@ -15,11 +15,6 @@ import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.adapters.MovieDetailAdapter
 import com.joenjogu.nexflix.adapters.PopularMovieAdapter
 import com.joenjogu.nexflix.databinding.FragmentMovieDetailBinding
-import com.joenjogu.nexflix.databinding.MovieDetailRecyclerviewBinding
-import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
-import com.joenjogu.nexflix.models.Movie
-import com.joenjogu.nexflix.models.RecommendedMovie
-import com.joenjogu.nexflix.utils.toPopularMovie
 import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -45,13 +40,9 @@ class MovieDetailFragment : Fragment() {
         }
 
         movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner) { recommendedMovie ->
-            val movieList = mutableListOf<Movie>()
-            for (movie in recommendedMovie) {
-                val converted = movie.toPopularMovie()
-                movieList.add(converted)
-            }
-            adapter.submitList(movieList)
+            adapter.submitList(recommendedMovie)
         }
+
         val direction = MovieDetailFragmentDirections.actionMovieDetailFragmentToViewPagerFragment()
         detailBinding.toolbar.setNavigationOnClickListener {
             it.findNavController().navigate(direction)

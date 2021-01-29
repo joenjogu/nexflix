@@ -8,7 +8,7 @@ import java.io.IOException
 
 class PopularMovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
-    val movies = repository.movies
+    val movies = repository.popularMovies
 
     init {
         refreshDataFromRepository()
