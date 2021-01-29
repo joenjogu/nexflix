@@ -9,7 +9,7 @@ import java.io.IOException
 
 class LatestMovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
-    val trendingMovie = repository.trendingMovie
+    val trendingMovie = repository.trendingMovies
 
     init {
         refreshDataFromRepository()

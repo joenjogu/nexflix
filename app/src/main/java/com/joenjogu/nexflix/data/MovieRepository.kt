@@ -13,9 +13,9 @@ class MovieRepository(
         private val apiService: MoviesApiService,
         private val movieDao: MovieDao) {
 
-    val movies: LiveData<List<Movie>> = movieDao.getAllMovies()
-    val trendingMovie: LiveData<List<Movie>> = movieDao.getAllMovies()
-    val recommendedMovies: LiveData<List<Movie>> = movieDao.getAllMovies()
+    val popularMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.TopRated)
+    val trendingMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.Trending)
+    val recommendedMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.Recommended)
 
 //    private val _movie = MutableLiveData<Movie>()
 //    val movie: LiveData<Movie>
@@ -26,6 +26,7 @@ class MovieRepository(
         Log.d("Repo", "getMovie: movie ID $id, ${repoMovie}")
 
         if ( repoMovie != null) {
+            getRecommendedMovies(id)
             return repoMovie
         } else {
             try {
@@ -82,6 +83,7 @@ class MovieRepository(
             for (result in results) {
                 recommendedMovies.add(result.toRecommendedDomain())
             }
+            Log.d("Repo", "getRecommendedMovies: $recommendedMovies")
             movieDao.insertAllMovies(recommendedMovies)
         } catch (exception: Throwable) {
             Log.e("getRecommendedMovies", "getRecommendedMovies: ", exception)

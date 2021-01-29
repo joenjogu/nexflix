@@ -1,17 +1,17 @@
 package com.joenjogu.nexflix.models
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.joenjogu.nexflix.utils.Category
 
-@Entity
+@Entity(indices = [Index("id"), Index("category")], primaryKeys = ["id", "category"])
 data class Movie(
-    @PrimaryKey
     val id: Int,
     val imageUrl: String,
     val title: String,
     val overview: String,
     val rating: Double,
     val released: String,
-    val category: Category = Category.TopRated
+    val category: Category
 )
