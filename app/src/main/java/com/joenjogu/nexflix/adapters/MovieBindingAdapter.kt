@@ -27,3 +27,8 @@ fun ImageView.bindImageUrl(imageUrl: String?) {
 fun TextView.convertDoubleToString(number: Double) {
     this.text = number.toBigDecimal().toPlainString()
 }
+
+@BindingAdapter("setDateToYear")
+fun TextView.reduceDateToYear(date: String) {
+    this.text = date.substring(0, 5)
+}

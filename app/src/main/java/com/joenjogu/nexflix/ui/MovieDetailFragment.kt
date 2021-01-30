@@ -47,6 +47,9 @@ class MovieDetailFragment : Fragment() {
         detailBinding.toolbar.setNavigationOnClickListener {
             it.findNavController().navigate(direction)
         }
+        detailBinding.toolbar.setNavigationOnClickListener {
+            it.findNavController().navigateUp()
+        }
 
         return detailBinding.root
     }

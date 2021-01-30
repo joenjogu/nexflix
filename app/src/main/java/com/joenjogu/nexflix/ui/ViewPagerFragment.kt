@@ -24,7 +24,7 @@ class ViewPagerFragment : Fragment() {
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
         val fragmentManager = parentFragmentManager
 
-        val fragmentAdapter = FragmentAdapter(fragmentManager, lifecycle)
+        val fragmentAdapter = FragmentAdapter(childFragmentManager, lifecycle)
         viewPager.adapter = fragmentAdapter
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
