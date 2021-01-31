@@ -1,7 +1,6 @@
 package com.joenjogu.nexflix.data
 
 import com.joenjogu.nexflix.BuildConfig
-import com.joenjogu.nexflix.models.RecommendationResponse
 import com.joenjogu.nexflix.models.SearchResponse
 import com.joenjogu.nexflix.models.MovieResult
 import com.joenjogu.nexflix.models.TrendingResponse

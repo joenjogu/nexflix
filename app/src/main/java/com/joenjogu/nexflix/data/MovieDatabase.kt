@@ -4,10 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.joenjogu.nexflix.models.Movie
-import com.joenjogu.nexflix.models.RecommendedMovie
-import com.joenjogu.nexflix.models.TrendingMovie
 
-@Database(entities = [Movie::class], version = 3, exportSchema = false)
+@Database(entities = [Movie::class], version = 4, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class MovieDatabase : RoomDatabase() {
 

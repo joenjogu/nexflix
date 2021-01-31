@@ -3,7 +3,6 @@ package com.joenjogu.nexflix.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.joenjogu.nexflix.models.Movie
-import com.joenjogu.nexflix.models.TrendingMovie
 import com.joenjogu.nexflix.utils.Category
 import com.joenjogu.nexflix.utils.toTrendingDomain
 import com.joenjogu.nexflix.utils.toPopularDomain
@@ -15,24 +14,23 @@ class MovieRepository(
 
     val popularMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.TopRated)
     val trendingMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.Trending)
-    val recommendedMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.Recommended)
 
-//    private val _movie = MutableLiveData<Movie>()
-//    val movie: LiveData<Movie>
-//        get() = _movie
+    fun getRecommendationsFromDB(id: Int): LiveData<List<Movie>> {
+        return movieDao.getRecommendedMovies(id)
+    }
 
     suspend fun getMovie(id: Int): Movie {
         val repoMovie = movieDao.getMovieById(id)
-        Log.d("Repo", "getMovie: movie ID $id, ${repoMovie}")
+        Log.d("Repo", "getMovie: movie ID $id, $repoMovie")
 
         if ( repoMovie != null) {
             getRecommendedMovies(id)
             return repoMovie
         } else {
             try {
-                //fix live data
-                val result = apiService.getMovie(id, "2d9aa26f9b71ca6d8a3db85d730e19a4")
-                return result.toRecommendedDomain()
+                //fix recommendation id vs movie id
+                val result = apiService.getMovie(id)
+                return result.toRecommendedDomain(movieId = 0)
             } catch (exception: Throwable) {
                 Log.e("GetMovie", "getMovie: ", exception)
             }
@@ -45,7 +43,7 @@ class MovieRepository(
     suspend fun getPopularMovies(): MutableList<Movie> {
         val movies = mutableListOf<Movie>()
         try {
-            val response = apiService.getTopMovies("2d9aa26f9b71ca6d8a3db85d730e19a4")
+            val response = apiService.getTopMovies()
             val results = response.movieResults
             for (result in results) {
                 movies.add(result.toPopularDomain())
@@ -62,7 +60,7 @@ class MovieRepository(
     suspend fun getTrendingMovies(): MutableList<Movie> {
         val trendingMovies = mutableListOf<Movie>()
         try {
-            val response = apiService.getTrendingMovies("2d9aa26f9b71ca6d8a3db85d730e19a4")
+            val response = apiService.getTrendingMovies()
             val results = response.trendingResults
             for (result in results) {
                 trendingMovies.add(result.toTrendingDomain())
@@ -78,10 +76,10 @@ class MovieRepository(
     suspend fun getRecommendedMovies(movieId: Int): MutableList<Movie> {
         val recommendedMovies = mutableListOf<Movie>()
         try {
-            val response = apiService.getRecommendedMovies(movieId, "2d9aa26f9b71ca6d8a3db85d730e19a4")
+            val response = apiService.getRecommendedMovies(movieId)
             val results = response.movieResults
             for (result in results) {
-                recommendedMovies.add(result.toRecommendedDomain())
+                recommendedMovies.add(result.toRecommendedDomain(movieId))
             }
             Log.d("Repo", "getRecommendedMovies: $recommendedMovies")
             movieDao.insertAllMovies(recommendedMovies)

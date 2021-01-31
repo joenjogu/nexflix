@@ -1,6 +1,5 @@
 package com.joenjogu.nexflix.utils
 
-import com.joenjogu.nexflix.models.RecommendedResult
 import com.joenjogu.nexflix.models.*
 
 const val urlPrefix = "https://image.tmdb.org/t/p/w500/"
@@ -16,7 +15,7 @@ fun MovieResult.toPopularDomain(): Movie {
     )
 }
 
-fun MovieResult.toRecommendedDomain(): Movie {
+fun MovieResult.toRecommendedDomain(movieId: Int): Movie {
     return Movie(
             this.id,
             urlPrefix + this.poster_path,
@@ -24,7 +23,8 @@ fun MovieResult.toRecommendedDomain(): Movie {
             this.overview,
             this.vote_average,
             this.release_date,
-            Category.Recommended
+            Category.Recommended,
+            recommendedId = movieId
     )
 }
 

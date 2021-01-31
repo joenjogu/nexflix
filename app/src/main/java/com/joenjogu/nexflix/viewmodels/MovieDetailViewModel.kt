@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.joenjogu.nexflix.data.MovieRepository
 import com.joenjogu.nexflix.models.Movie
-import com.joenjogu.nexflix.models.RecommendedMovie
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -15,8 +14,7 @@ class MovieDetailViewModel(private val repository: MovieRepository, val id: Stri
 
     // get movie id from safArgs
     val movieId = id.toInt()
-//    val movie = getMovieById(movieId)
-    val recommendedMovies = repository.recommendedMovies
+    val recommendedMovies = repository.getRecommendationsFromDB(movieId)
 
     private val _movie = MutableLiveData<Movie>()
     val movie: LiveData<Movie>
@@ -28,7 +26,6 @@ class MovieDetailViewModel(private val repository: MovieRepository, val id: Stri
     }
 
     private fun getMovieById(movieId: Int) {
-//        Log.d("MovieDetailViewModel", "getMovieById: ${repository.getMovie(movieId)}")
         viewModelScope.launch {
             val movie = repository.getMovie(movieId)
             Log.d("MovieDetailViewModel", "getMovieById: Movie: $movie")

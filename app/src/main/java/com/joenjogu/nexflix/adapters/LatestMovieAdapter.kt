@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.joenjogu.nexflix.models.TrendingMovie
 import com.joenjogu.nexflix.databinding.LatestMovieListItemBinding
 import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.ui.ViewPagerFragmentDirections

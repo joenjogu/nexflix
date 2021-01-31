@@ -8,16 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
-import androidx.navigation.NavArgs
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.joenjogu.nexflix.R
-import com.joenjogu.nexflix.adapters.MovieDetailAdapter
 import com.joenjogu.nexflix.adapters.PopularMovieAdapter
 import com.joenjogu.nexflix.databinding.FragmentMovieDetailBinding
 import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class MovieDetailFragment : Fragment() {
