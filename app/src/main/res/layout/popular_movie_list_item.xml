@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="8dp"
-                    android:textColor="@color/design_default_color_secondary"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -75,12 +75,12 @@
 
                 <TextView
                     android:id="@+id/movie_release_date"
-                    android:text="@{movie.released}"
+                    app:setDateToYear="@{movie.released}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="5dp"
-                    android:textColor="@color/design_default_color_secondary"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"

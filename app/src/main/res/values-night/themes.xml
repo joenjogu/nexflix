@@ -2,16 +2,26 @@
     <!-- Base application theme. -->
     <style name="Theme.Nexflix" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/netflix_red</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/netflix_red</item>
-        <item name="colorSecondaryVariant">@color/netflix_red</item>
+        <item name="colorSecondaryVariant">@color/darker_netflix_red</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Nexflix.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextColor">@color/netflix_red</item>
+
+    </style>
+
+    <style name="Theme.Nexflix.AppBarLayout" parent="Widget.Design.AppBarLayout">
+        <item name="android:background">@color/black</item>
+
     </style>
 </resources>

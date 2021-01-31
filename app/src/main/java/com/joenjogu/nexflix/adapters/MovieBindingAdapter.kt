@@ -30,5 +30,5 @@ fun TextView.convertDoubleToString(number: Double) {
 
 @BindingAdapter("setDateToYear")
 fun TextView.reduceDateToYear(date: String) {
-    this.text = date.substring(0, 5)
+    this.text = date.substring(0, 4)
 }
