@@ -6,7 +6,6 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.utils.Category
 import com.joenjogu.nexflix.utils.toTrendingDomain
 import com.joenjogu.nexflix.utils.toPopularDomain
-import com.joenjogu.nexflix.utils.toRecommendedDomain
 
 class MovieRepository(
         private val apiService: MoviesApiService,
@@ -29,8 +28,14 @@ class MovieRepository(
         } else {
             try {
                 //fix recommendation id vs movie id
-                val result = apiService.getMovie(id)
-                return result.toRecommendedDomain(movieId = 0)
+                val response = apiService.getMovie(id)
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        return result.toPopularDomain()
+                    }
+                }
+
             } catch (exception: Throwable) {
                 Log.e("GetMovie", "getMovie: ", exception)
             }
@@ -44,13 +49,18 @@ class MovieRepository(
         val movies = mutableListOf<Movie>()
         try {
             val response = apiService.getTopMovies()
-            val results = response.movieResults
-            for (result in results) {
-                movies.add(result.toPopularDomain())
+            if (response.isSuccessful) {
+                val results = response.body()
+                if (results != null) {
+                    for (result in results.movieResults) {
+                        movies.add(result.toPopularDomain())
+                    }
+                }
+                Log.d("Repo", "getPopularMovies: $movies")
+                movieDao.insertAllMovies(movies)
+                return movies
             }
-            Log.d("Repo", "getPopularMovies: $movies")
-            movieDao.insertAllMovies(movies)
-            return movies
+
         } catch (exception: Throwable){
             Log.e("Repo", "getPopularMovies: ", exception)
         }
@@ -61,12 +71,17 @@ class MovieRepository(
         val trendingMovies = mutableListOf<Movie>()
         try {
             val response = apiService.getTrendingMovies()
-            val results = response.trendingResults
-            for (result in results) {
-                trendingMovies.add(result.toTrendingDomain())
+            if (response.isSuccessful) {
+                val results = response.body()
+                if (results != null) {
+                    for (result in results.trendingResults) {
+                        trendingMovies.add(result.toTrendingDomain())
+                    }
+                }
+                Log.d("Repo", "getPopularMovies: $trendingMovies")
+                movieDao.insertAllMovies(trendingMovies)
+                return trendingMovies
             }
-            movieDao.insertAllMovies(trendingMovies)
-            return trendingMovies
         } catch (exception: Throwable) {
             Log.e("Repo", "getTrendingMovies: ", exception)
         }
@@ -77,12 +92,17 @@ class MovieRepository(
         val recommendedMovies = mutableListOf<Movie>()
         try {
             val response = apiService.getRecommendedMovies(movieId)
-            val results = response.movieResults
-            for (result in results) {
-                recommendedMovies.add(result.toRecommendedDomain(movieId))
+            if (response.isSuccessful) {
+                val results = response.body()
+                if (results != null) {
+                    for (result in results.movieResults) {
+                        recommendedMovies.add(result.toPopularDomain())
+                    }
+                }
+                Log.d("Repo", "getPopularMovies: $trendingMovies")
+                movieDao.insertAllMovies(recommendedMovies)
+                return recommendedMovies
             }
-            Log.d("Repo", "getRecommendedMovies: $recommendedMovies")
-            movieDao.insertAllMovies(recommendedMovies)
         } catch (exception: Throwable) {
             Log.e("getRecommendedMovies", "getRecommendedMovies: ", exception)
         }
