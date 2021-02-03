@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Mipangilio</string>
+    <string name="latest">karibuni</string>
+    <string name="popular">maarufu</string>
+    <string name="recommended_movies">Pendekezo za Movies</string>
+    <string name="search">tafuta</string>
+</resources>
