@@ -26,7 +26,7 @@ class MovieDaoTest {
 
     private val movie1 = Movie(1, "https:// url", "Tenet", "time", 2.4, "2020", Category.TopRated)
     private val movie2 = Movie(2, "https:// url", "Joker", "jokes", 5.2, "2020", Category.TopRated)
-    private val movie3 = Movie(3, "https:// url", "Crush", "banter", 8.9, "2020", Category.Trending)
+    private val movie3 = Movie(3, "https:// url", "Crush", "banter", 8.9, "2020", Category.Trending, 1)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -57,6 +57,15 @@ class MovieDaoTest {
         runBlocking {
             val value = dao.getMovieById(id)
             assertThat(value.title, equalTo("Joker"))
+        }
+    }
+
+    @Test
+    fun testGetRecommendedMovies() {
+        val id= 1
+        runBlocking {
+            val recommendation = getValue(dao.getRecommendedMovies(id))
+            assertThat(recommendation[0].id, equalTo(3))
         }
     }
 }
