@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.joenjogu.nexflix.utilities.KoinTestRuner"
         buildConfigField("String", "API_KEY", API_KEY)
     }
 
@@ -35,6 +35,10 @@ android {
     }
     buildFeatures {
         dataBinding true
+    }
+
+    testOptions {
+        animationsDisabled = true
     }
 }
 
