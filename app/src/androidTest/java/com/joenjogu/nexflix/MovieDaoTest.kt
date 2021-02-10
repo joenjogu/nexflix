@@ -33,7 +33,7 @@ class MovieDaoTest {
 
     @Before
     fun createDb() = runBlocking {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val context = androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().targetContext
         database = Room.inMemoryDatabaseBuilder(context, MovieDatabase::class.java).build()
         dao = database.movieDao
 
