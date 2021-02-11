@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.joenjogu.nexflix.utilities.KoinTestRuner"
+        testInstrumentationRunner "com.joenjogu.nexflix.utilities.KoinTestRunner"
         buildConfigField("String", "API_KEY", API_KEY)
     }
 
@@ -61,6 +61,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:1.1.2"
     androidTestImplementation 'androidx.test:rules:1.3.0'
     testImplementation "io.mockk:mockk:1.10.5"
+    androidTestImplementation "io.mockk:mockk-android:1.10.5"
 
     //room
     implementation "androidx.room:room-runtime:$room_version"

@@ -1,15 +1,12 @@
 package com.joenjogu.nexflix.utilities
 
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDestination
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.ui.MainActivity
-import org.junit.rules.TestRule
 import org.koin.core.module.Module
 
 abstract class FragmentTestRule<F: Fragment> : ActivityTestRule<MainActivity>(MainActivity::class.java, true){
