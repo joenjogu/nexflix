@@ -2,7 +2,6 @@ package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -13,6 +12,10 @@ import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.adapters.FragmentAdapter
 
 class ViewPagerFragment : Fragment() {
+
+    companion object {
+        val TAG = ViewPagerFragment::class.java.name
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -39,18 +42,20 @@ class ViewPagerFragment : Fragment() {
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_search -> {
-                // search function
-                return true
-            }
-            R.id.menu_settings -> {
-                //pref manager fragment
-               return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-        return false
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.menu_search -> {
+//                // search function
+//                return true
+//            }
+//            R.id.menu_settings -> {
+//                Log.d(TAG, "onOptionsItemSelected: Settings Button Clicked")
+//                val intent = Intent(context, SettingsActivity::class.java)
+//                startActivity(intent)
+//                return true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//        return false
+//    }
 }
