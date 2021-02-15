@@ -26,6 +26,8 @@ class ViewPagerFragment : Fragment() {
         val toolbar = view?.findViewById<Toolbar>(R.id.menu_app_bar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
+        setHasOptionsMenu(true)
+
         return inflater.inflate(R.layout.fragment_viewpager, container, false)
     }
 
