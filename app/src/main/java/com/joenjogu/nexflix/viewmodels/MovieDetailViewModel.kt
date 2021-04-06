@@ -37,6 +37,7 @@ class MovieDetailViewModel(private val repository: MovieRepository, val id: Stri
         viewModelScope.launch {
             try {
                 repository.getRecommendedMovies(movieId)
+                Log.d("MovieDetailViewModel", "getMovieRecommendation: Movie: $movieId")
             } catch (networkError: IOException) {
                 throw networkError
             }
