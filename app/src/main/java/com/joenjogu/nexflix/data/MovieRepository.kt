@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.utils.Category
-import com.joenjogu.nexflix.utils.toTrendingDomain
 import com.joenjogu.nexflix.utils.toPopularDomain
+import com.joenjogu.nexflix.utils.toTrendingDomain
 
 class MovieRepository(
         private val apiService: MoviesApiService,
@@ -20,10 +20,11 @@ class MovieRepository(
 
     suspend fun getMovie(id: Int): Movie {
         val repoMovie = movieDao.getMovieById(id)
-        Log.d("Repo", "getMovie: movie ID $id, $repoMovie")
 
         if ( repoMovie != null) {
-            getRecommendedMovies(id)
+            Log.d("Repo", "getMovie: movie ID $id, $repoMovie")
+            getRecommendationsFromDB(id)
+            Log.d("Repo", "getMovie: getting recommended movies" )
             return repoMovie
         } else {
             try {
@@ -78,7 +79,7 @@ class MovieRepository(
                         trendingMovies.add(result.toTrendingDomain())
                     }
                 }
-                Log.d("Repo", "getPopularMovies: $trendingMovies")
+                Log.d("Repo", "getTrendingMovies: $trendingMovies")
                 movieDao.insertAllMovies(trendingMovies)
                 return trendingMovies
             }
@@ -99,7 +100,7 @@ class MovieRepository(
                         recommendedMovies.add(result.toPopularDomain())
                     }
                 }
-                Log.d("Repo", "getPopularMovies: $trendingMovies")
+                Log.d("Repo", "getRecommendedMovies: $recommendedMovies")
                 movieDao.insertAllMovies(recommendedMovies)
                 return recommendedMovies
             }

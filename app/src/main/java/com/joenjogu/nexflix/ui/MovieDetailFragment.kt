@@ -2,11 +2,11 @@ package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -28,6 +28,7 @@ class MovieDetailFragment : Fragment() {
 
         // Inflate the layout for this fragment
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
+        detailBinding.lifecycleOwner = this
         val adapter = PopularMovieAdapter(context)
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
 
@@ -37,6 +38,7 @@ class MovieDetailFragment : Fragment() {
         }
 
         movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner) { recommendedMovie ->
+            Log.d("Movie", "recommendedFromDB: $recommendedMovie")
             adapter.submitList(recommendedMovie)
         }
 
