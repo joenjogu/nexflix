@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Nexflix" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/darker_netflix_red</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimary</item>
+        <item name="android:statusBarColor" >@android:color/transparent</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/black</item>
 
@@ -19,6 +19,10 @@
     <style name="Theme.Nexflix.TabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabTextColor">@color/netflix_red</item>
 
+    </style>
+
+    <style name="Theme.Nexflix.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/background_grey</item>
     </style>
 
 </resources>

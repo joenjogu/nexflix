@@ -24,4 +24,8 @@
         <item name="android:background">@color/black</item>
 
     </style>
+
+    <style name="Theme.Nexflix.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@android:color/background_dark</item>
+    </style>
 </resources>
