@@ -3,6 +3,7 @@ package com.joenjogu.nexflix.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.joenjogu.nexflix.models.Movie
+import com.joenjogu.nexflix.models.MovieFavouriteUpdate
 import com.joenjogu.nexflix.utils.Category
 import com.joenjogu.nexflix.utils.toPopularDomain
 import com.joenjogu.nexflix.utils.toTrendingDomain
@@ -108,5 +109,9 @@ class MovieRepository(
             Log.e("getRecommendedMovies", "getRecommendedMovies: ", exception)
         }
         return recommendedMovies
+    }
+
+    suspend fun setFavourite(movieId: Int) {
+        movieDao.updateFavourite(MovieFavouriteUpdate(movieId, Category.TopRated, true))
     }
 }

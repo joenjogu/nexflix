@@ -52,6 +52,10 @@ class MovieDetailViewModel(private val repository: MovieRepository, val id: Stri
         }
     }
 
+    fun setFavourite() {
+        viewModelScope.launch { repository.setFavourite(movieId) }
+    }
+
     private suspend fun getRecommendationsFromDB(movieId: Int): LiveData<List<Movie>> {
         val recommendations = repository.getRecommendationsFromDB(movieId)
         return if (recommendations.value.isNullOrEmpty()) {
