@@ -3,7 +3,17 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'jacoco-android'
 }
+
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
 
 android {
     compileSdkVersion 30
