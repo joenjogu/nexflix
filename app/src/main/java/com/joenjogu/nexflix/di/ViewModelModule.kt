@@ -1,5 +1,6 @@
 package com.joenjogu.nexflix.di
 
+import com.joenjogu.nexflix.viewmodels.FavouriteMovieViewModel
 import com.joenjogu.nexflix.viewmodels.LatestMovieViewModel
 import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
 import com.joenjogu.nexflix.viewmodels.PopularMovieViewModel
@@ -18,5 +19,9 @@ val viewModelModule = module {
     viewModel {
         (id: String) ->
         MovieDetailViewModel(repository = get(), id)
+    }
+
+    viewModel {
+        FavouriteMovieViewModel(repository = get())
     }
 }

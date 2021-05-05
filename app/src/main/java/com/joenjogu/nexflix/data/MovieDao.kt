@@ -12,6 +12,9 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllMovies(movies: List<Movie>)
 
+    @Update(entity = Movie::class)
+    suspend fun updateFavourite(fav: MovieFavouriteUpdate)
+
     @Query("SELECT * FROM movie WHERE category = :category")
     fun getAllMovies(category: Category) : LiveData<List<Movie>>
 
@@ -21,6 +24,6 @@ interface MovieDao {
     @Query("SELECT * FROM movie WHERE recommendedId = :movieId")
     fun getRecommendedMovies(movieId: Int): LiveData<List<Movie>>
 
-    @Update(entity = Movie::class)
-    suspend fun updateFavourite(fav: MovieFavouriteUpdate)
+    @Query("SELECT * FROM movie WHERE favourite = 1")
+    fun getFavouriteMovies(): LiveData<List<Movie>>
 }

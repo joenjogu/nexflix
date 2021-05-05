@@ -14,6 +14,7 @@ class MovieRepository(
 
     val popularMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.TopRated)
     val trendingMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.Trending)
+    val favouriteMovies: LiveData<List<Movie>> = movieDao.getFavouriteMovies()
 
     fun getRecommendationsFromDB(id: Int): LiveData<List<Movie>> {
         return movieDao.getRecommendedMovies(id)
