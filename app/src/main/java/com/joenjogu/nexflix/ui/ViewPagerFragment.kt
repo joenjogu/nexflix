@@ -1,12 +1,10 @@
 package com.joenjogu.nexflix.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -19,19 +17,24 @@ class ViewPagerFragment : Fragment() {
         val TAG: String = ViewPagerFragment::class.java.name
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val toolbar = view?.findViewById<Toolbar>(R.id.menu_app_bar)
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-
+    override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.top_app_bar, menu)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+//        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_viewpager, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewPager = view.findViewById<ViewPager2>(R.id.viewpager)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
-
 
         val fragmentAdapter = FragmentAdapter(childFragmentManager, lifecycle)
         viewPager.adapter = fragmentAdapter
@@ -44,29 +47,12 @@ class ViewPagerFragment : Fragment() {
             }
             viewPager.setCurrentItem(0, true)
         }.attach()
-
-
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_app_bar, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_search -> {
-                // search function
-                return true
-            }
-            R.id.menu_settings -> {
-                Log.d(TAG, "onOptionsItemSelected: Settings Button Clicked")
-                val intent = Intent(context, SettingsActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-        return false
+        return NavigationUI.onNavDestinationSelected(item, findNavController())
+                || super.onOptionsItemSelected(item)
     }
 }
