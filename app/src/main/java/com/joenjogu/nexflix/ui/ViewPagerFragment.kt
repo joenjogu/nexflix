@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.joenjogu.nexflix.R
@@ -35,6 +35,7 @@ class ViewPagerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewPager = view.findViewById<ViewPager2>(R.id.viewpager)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.menu_app_bar)
 
         val fragmentAdapter = FragmentAdapter(childFragmentManager, lifecycle)
         viewPager.adapter = fragmentAdapter
@@ -47,12 +48,26 @@ class ViewPagerFragment : Fragment() {
             }
             viewPager.setCurrentItem(0, true)
         }.attach()
+
+        initToolbar(toolbar)
     }
 
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, findNavController())
-                || super.onOptionsItemSelected(item)
+    private fun initToolbar(toolbar: MaterialToolbar) {
+        toolbar.inflateMenu(R.menu.top_app_bar)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.favouriteFragment ->{
+                    val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToFavouriteFragment()
+                    findNavController().navigate(direction)
+                    true
+                }
+                else -> false
+            }
+        }
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return NavigationUI.onNavDestinationSelected(item, findNavController())
+//                || super.onOptionsItemSelected(item)
+//    }
 }

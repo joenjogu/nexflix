@@ -6,21 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.adapters.PopularMovieAdapter
-import com.joenjogu.nexflix.databinding.FragmentPopularBinding
+import com.joenjogu.nexflix.databinding.FragmentFavouriteBinding
 import com.joenjogu.nexflix.viewmodels.FavouriteMovieViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavouriteFragment : Fragment() {
-    private lateinit var dataBinding : FragmentPopularBinding
-    private val favouriteMovieViewModel: FavouriteMovieViewModel by viewModels()
+    private lateinit var dataBinding : FragmentFavouriteBinding
+    private val favouriteMovieViewModel: FavouriteMovieViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_popular,container, false )
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite,container, false )
 
         val adapter = PopularMovieAdapter(requireContext())
+        dataBinding.popularLayout.adapter = adapter
 
         favouriteMovieViewModel.favouriteMovies.observe(viewLifecycleOwner) {
             adapter.submitList(it)
