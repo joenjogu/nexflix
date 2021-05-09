@@ -21,7 +21,7 @@ class FavouriteFragment : Fragment() {
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite,container, false )
 
         val adapter = PopularMovieAdapter(requireContext())
-        dataBinding.popularLayout.adapter = adapter
+        dataBinding.adapter = adapter
 
         favouriteMovieViewModel.favouriteMovies.observe(viewLifecycleOwner) {
             adapter.submitList(it)

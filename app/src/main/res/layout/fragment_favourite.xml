@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="movie"
+            name="adapter"
             type="com.joenjogu.nexflix.adapters.PopularMovieAdapter" />
 
     </data>
@@ -25,16 +26,19 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/favourite_toolbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <include
-                android:id="@+id/popular_layout"
-                layout="@layout/fragment_popular"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favourite_recyclerview"
+                setAdapter="@{adapter}"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/popular_movie_list_item"
+                app:spanCount="2"/>
 
         </androidx.core.widget.NestedScrollView>
 
