@@ -1,11 +1,14 @@
 package com.joenjogu.nexflix.worker
 
 import android.accounts.NetworkErrorException
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -20,17 +23,24 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.ui.MainActivity
 import com.joenjogu.nexflix.utils.toTrendingDomain
 import kotlinx.coroutines.runBlocking
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.util.*
 import java.util.concurrent.CountDownLatch
 
+@KoinApiExtension
 class LatestMovieNotificationWorker(
         private val context: Context,
         workerParams: WorkerParameters,
 ) : CoroutineWorker(context, workerParams), KoinComponent{
 
     private val apiService: MoviesApiService by inject()
+
+    companion object {
+        val TAG: String = LatestMovieNotificationWorker::class.java.name
+        const val NOTIFICATION_CHANNEL_ID = "Latest Movie Notification ID"
+    }
 
     override suspend fun doWork(): Result {
         try {
@@ -52,12 +62,19 @@ class LatestMovieNotificationWorker(
         return Result.failure()
     }
 
-    companion object {
-        val TAG: String = LatestMovieNotificationWorker::class.java.name
-        const val NOTIFICATION_CHANNEL_ID = "Latest Movie Notification ID"
-    }
 
     private fun createNotification(movie: Movie) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelName = "Latest Movie Notification"
+            val description = "Get notified about the latest trending movies"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, importance)
+            channel.description = description
+
+            val notificationManager = NotificationManagerCompat.from(context)
+            notificationManager.createNotificationChannel(channel)
+        }
+
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
