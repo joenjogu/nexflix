@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.joenjogu.nexflix.R
-import com.joenjogu.nexflix.adapters.PopularMovieAdapter
+import com.joenjogu.nexflix.adapters.FavouriteMovieAdapter
 import com.joenjogu.nexflix.databinding.FragmentFavouriteBinding
 import com.joenjogu.nexflix.viewmodels.FavouriteMovieViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -20,11 +21,15 @@ class FavouriteFragment : Fragment() {
 
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite,container, false )
 
-        val adapter = PopularMovieAdapter(requireContext())
+        val adapter = FavouriteMovieAdapter()
         dataBinding.adapter = adapter
 
         favouriteMovieViewModel.favouriteMovies.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }
+
+        dataBinding.favouriteToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
 
         return dataBinding.root

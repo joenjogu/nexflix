@@ -6,7 +6,7 @@
     <data>
         <variable
             name="adapter"
-            type="com.joenjogu.nexflix.adapters.PopularMovieAdapter" />
+            type="com.joenjogu.nexflix.adapters.FavouriteMovieAdapter" />
 
     </data>
 
@@ -24,23 +24,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favourite_recyclerview"
+            setAdapter="@{adapter}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/favourite_toolbar"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/favourite_recyclerview"
-                setAdapter="@{adapter}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/popular_movie_list_item"
-                app:spanCount="2"/>
-
-        </androidx.core.widget.NestedScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/favourite_toolbar"
+            app:spanCount="2"
+            tools:listitem="@layout/popular_movie_list_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
