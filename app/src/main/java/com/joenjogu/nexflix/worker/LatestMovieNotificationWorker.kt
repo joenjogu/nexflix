@@ -31,9 +31,9 @@ import java.util.concurrent.CountDownLatch
 
 @KoinApiExtension
 class LatestMovieNotificationWorker(
-        private val context: Context,
-        workerParams: WorkerParameters,
-) : CoroutineWorker(context, workerParams), KoinComponent{
+    private val context: Context,
+    workerParams: WorkerParameters,
+) : CoroutineWorker(context, workerParams), KoinComponent {
 
     private val apiService: MoviesApiService by inject()
 
@@ -56,12 +56,11 @@ class LatestMovieNotificationWorker(
                 val error = response.code().toString() + response.errorBody()
                 Log.d(TAG, "doWork: $error")
             }
-        } catch (exception : NetworkErrorException) {
+        } catch (exception: NetworkErrorException) {
             Log.d(TAG, "doWork: $exception")
         }
         return Result.failure()
     }
-
 
     private fun createNotification(movie: Movie) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -82,14 +81,14 @@ class LatestMovieNotificationWorker(
         val notificationBitmap = getPosterBitmap(movie.imageUrl)
 
         val builder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_baseline_tv_24)
-                .setContentTitle("Checkout The Latest Movie")
-                .setContentText(movie.title.toUpperCase(Locale.ROOT))
-                .setStyle(NotificationCompat.BigPictureStyle().bigPicture(notificationBitmap).bigLargeIcon(null))
-                .setLargeIcon(notificationBitmap)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setSmallIcon(R.drawable.ic_baseline_tv_24)
+            .setContentTitle("Checkout The Latest Movie")
+            .setContentText(movie.title.toUpperCase(Locale.ROOT))
+            .setStyle(NotificationCompat.BigPictureStyle().bigPicture(notificationBitmap).bigLargeIcon(null))
+            .setLargeIcon(notificationBitmap)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         val notificationManager = NotificationManagerCompat.from(context)
 
@@ -101,25 +100,24 @@ class LatestMovieNotificationWorker(
         val latch = CountDownLatch(1)
         runBlocking {
             Glide.with(context).asBitmap().load(imageUrl).placeholder(R.drawable.loading_placeholder).into(
-                    object : CustomTarget<Bitmap>() {
-                        override fun onResourceReady(
-                                resource: Bitmap,
-                                transition: Transition<in Bitmap>?
-                        ) {
-                            latch.countDown()
-                            Log.d(TAG, "onResourceReady: ${resource.width}")
-                            imageBitmap = resource
-                            return
-                        }
-
-                        override fun onLoadCleared(placeholder: Drawable?) {
-
-                        }
+                object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        latch.countDown()
+                        Log.d(TAG, "onResourceReady: ${resource.width}")
+                        imageBitmap = resource
+                        return
                     }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {
+                    }
+                }
             )
         }
         latch.await()
-        Log.d(TAG, "getPosterBitmap: ${imageBitmap}")
+        Log.d(TAG, "getPosterBitmap: $imageBitmap")
         return imageBitmap
     }
 }

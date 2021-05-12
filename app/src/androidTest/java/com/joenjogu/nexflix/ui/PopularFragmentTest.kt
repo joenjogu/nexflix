@@ -18,14 +18,16 @@ class PopularFragmentTest {
     private val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToMovieDetailFragment()
 
     @get:Rule
-    val activityTestRule = createRule<Fragment>(direction, module {
-        single(override = true) {
-            viewModel
+    val activityTestRule = createRule<Fragment>(
+        direction,
+        module {
+            single(override = true) {
+                viewModel
+            }
         }
-    })
+    )
 
     @Test
     fun testBasicFunction() {
-
     }
 }

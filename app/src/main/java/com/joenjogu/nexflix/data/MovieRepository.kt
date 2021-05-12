@@ -9,8 +9,9 @@ import com.joenjogu.nexflix.utils.toPopularDomain
 import com.joenjogu.nexflix.utils.toTrendingDomain
 
 class MovieRepository(
-        private val apiService: MoviesApiService,
-        private val movieDao: MovieDao) {
+    private val apiService: MoviesApiService,
+    private val movieDao: MovieDao
+) {
 
     val popularMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.TopRated)
     val trendingMovies: LiveData<List<Movie>> = movieDao.getAllMovies(Category.Trending)
@@ -23,14 +24,14 @@ class MovieRepository(
     suspend fun getMovie(id: Int): Movie {
         val repoMovie = movieDao.getMovieById(id)
 
-        if ( repoMovie != null) {
+        if (repoMovie != null) {
             Log.d("Repo", "getMovie: movie ID $id, $repoMovie")
             getRecommendationsFromDB(id)
-            Log.d("Repo", "getMovie: getting recommended movies" )
+            Log.d("Repo", "getMovie: getting recommended movies")
             return repoMovie
         } else {
             try {
-                //fix recommendation id vs movie id
+                // fix recommendation id vs movie id
                 val response = apiService.getMovie(id)
                 if (response.isSuccessful) {
                     val result = response.body()
@@ -38,13 +39,14 @@ class MovieRepository(
                         return result.toPopularDomain()
                     }
                 }
-
             } catch (exception: Throwable) {
                 Log.e("GetMovie", "getMovie: ", exception)
             }
-            return Movie(0,
-                    "https://image.tmdb.org/t/p/w500//biznhvfedHPp9GKjlVFXH6OZtyU.jpg",
-                    "NULL", "NULL", 0.0, "NULL", Category.Recommended)
+            return Movie(
+                0,
+                "https://image.tmdb.org/t/p/w500//biznhvfedHPp9GKjlVFXH6OZtyU.jpg",
+                "NULL", "NULL", 0.0, "NULL", Category.Recommended
+            )
         }
     }
 
@@ -63,8 +65,7 @@ class MovieRepository(
                 movieDao.insertAllMovies(movies)
                 return movies
             }
-
-        } catch (exception: Throwable){
+        } catch (exception: Throwable) {
             Log.e("Repo", "getPopularMovies: ", exception)
         }
         return movies

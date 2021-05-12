@@ -5,8 +5,8 @@ import com.joenjogu.nexflix.di.databaseModule
 import com.joenjogu.nexflix.di.networkModule
 import com.joenjogu.nexflix.di.repositoryModule
 import com.joenjogu.nexflix.di.viewModelModule
-import org.koin.core.context.startKoin
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class NexflixApplication : Application() {
     override fun onCreate() {

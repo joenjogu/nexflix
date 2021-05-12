@@ -8,15 +8,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 val networkModule = module {
-    single { provideMovieApiService(retrofit = get ()) }
+    single { provideMovieApiService(retrofit = get()) }
 
     single { provideRetrofit(client = get(), url = "https://api.themoviedb.org/3/") }
 
     single { provideOkHttpClient() }
-
 }
 
-private fun provideOkHttpClient(): OkHttpClient{
+private fun provideOkHttpClient(): OkHttpClient {
     val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }

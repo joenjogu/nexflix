@@ -16,14 +16,14 @@ import com.joenjogu.nexflix.ui.ViewPagerFragmentDirections
 
 class PopularMovieAdapter(val context: Context?) : ListAdapter<Movie, PopularMovieAdapter.PopularMovieViewHolder>(Comparison) {
 
-    class PopularMovieViewHolder(val binding: PopularMovieListItemBinding)
-        : RecyclerView.ViewHolder(binding.root) {
-            fun bind(item: Movie, listener: View.OnClickListener) {
-                binding.movie = item
-                binding.clickListener = listener
-                binding.executePendingBindings()
-            }
+    class PopularMovieViewHolder(val binding: PopularMovieListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Movie, listener: View.OnClickListener) {
+            binding.movie = item
+            binding.clickListener = listener
+            binding.executePendingBindings()
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)

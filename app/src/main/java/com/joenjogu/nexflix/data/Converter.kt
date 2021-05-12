@@ -11,7 +11,7 @@ class Converter {
 
     @TypeConverter
     fun intToCategory(int: Int): Category {
-        return when(int) {
+        return when (int) {
             0 -> Category.TopRated
             1 -> Category.Trending
             2 -> Category.Recommended

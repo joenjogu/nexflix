@@ -23,9 +23,12 @@ class MovieDetailFragment : Fragment() {
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val movieDetailViewModel: MovieDetailViewModel by inject { parametersOf(args.movieId.toString())}
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val movieDetailViewModel: MovieDetailViewModel by inject { parametersOf(args.movieId.toString()) }
 
         // Inflate the layout for this fragment
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)

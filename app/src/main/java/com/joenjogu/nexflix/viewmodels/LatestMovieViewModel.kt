@@ -23,7 +23,6 @@ class LatestMovieViewModel(private val repository: MovieRepository) : ViewModel(
                 Log.e("LatestMovieViewModel", "refreshDataFromRepository: Failed to refresh data")
                 throw exception
             }
-
         }
     }
 }

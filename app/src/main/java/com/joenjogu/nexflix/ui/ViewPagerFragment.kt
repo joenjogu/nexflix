@@ -41,7 +41,7 @@ class ViewPagerFragment : Fragment() {
         viewPager.adapter = fragmentAdapter
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        TabLayoutMediator(tabLayout, viewPager){ tab, position ->
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.popular)
                 1 -> tab.text = getString(R.string.latest)
@@ -56,7 +56,7 @@ class ViewPagerFragment : Fragment() {
         toolbar.inflateMenu(R.menu.top_app_bar)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.favouriteFragment ->{
+                R.id.favouriteFragment -> {
                     val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToFavouriteFragment()
                     findNavController().navigate(direction)
                     true

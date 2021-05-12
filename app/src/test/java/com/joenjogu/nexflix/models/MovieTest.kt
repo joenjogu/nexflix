@@ -1,7 +1,7 @@
 package com.joenjogu.nexflix.models
 
 import com.joenjogu.nexflix.utils.Category
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class MovieTest {

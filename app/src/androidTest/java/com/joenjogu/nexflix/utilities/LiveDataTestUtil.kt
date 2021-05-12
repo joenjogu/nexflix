@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit
 
 fun <T> getValue(liveData: LiveData<T>): T {
     val data = arrayOfNulls<Any>(1)
-    val latch =CountDownLatch(1)
-    liveData.observeForever{
+    val latch = CountDownLatch(1)
+    liveData.observeForever {
         data[0] = it
         latch.countDown()
     }

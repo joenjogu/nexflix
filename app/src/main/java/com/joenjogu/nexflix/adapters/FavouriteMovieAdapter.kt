@@ -9,12 +9,12 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.utils.Comparison
 
 class FavouriteMovieAdapter : ListAdapter<Movie, FavouriteMovieAdapter.FavouriteMovieViewHolder>(Comparison) {
-    class FavouriteMovieViewHolder(val binding: PopularMovieListItemBinding)
-        : RecyclerView.ViewHolder(binding.root){
-            fun bind(movie: Movie) {
-                binding.movie = movie
-                binding.executePendingBindings()
-            }
+    class FavouriteMovieViewHolder(val binding: PopularMovieListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(movie: Movie) {
+            binding.movie = movie
+            binding.executePendingBindings()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteMovieViewHolder {
@@ -28,5 +28,4 @@ class FavouriteMovieAdapter : ListAdapter<Movie, FavouriteMovieAdapter.Favourite
         val movie = getItem(position)
         holder.bind(movie)
     }
-
 }

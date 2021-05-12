@@ -16,7 +16,7 @@ interface MovieDao {
     suspend fun updateFavourite(fav: MovieFavouriteUpdate)
 
     @Query("SELECT * FROM movie WHERE category = :category")
-    fun getAllMovies(category: Category) : LiveData<List<Movie>>
+    fun getAllMovies(category: Category): LiveData<List<Movie>>
 
     @Query("SELECT * FROM movie WHERE id = :id")
     suspend fun getMovieById(id: Int): Movie?

@@ -21,13 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
         val latestNotificationWorker = PeriodicWorkRequestBuilder<LatestMovieNotificationWorker>(
-                600, TimeUnit.SECONDS
+            600, TimeUnit.SECONDS
         ).setConstraints(constraints).build()
 
         WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
-                "LatestMovieNotificationWorker",
-                ExistingPeriodicWorkPolicy.REPLACE,
-                latestNotificationWorker
+            "LatestMovieNotificationWorker",
+            ExistingPeriodicWorkPolicy.REPLACE,
+            latestNotificationWorker
         )
     }
 }

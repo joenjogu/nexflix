@@ -22,6 +22,5 @@ class PopularMovieViewModel(private val repository: MovieRepository) : ViewModel
                 throw networkError
             }
         }
-
     }
 }

@@ -5,9 +5,10 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
 
-    single { MovieRepository(
+    single {
+        MovieRepository(
             apiService = get(),
             movieDao = get()
-    )
+        )
     }
 }

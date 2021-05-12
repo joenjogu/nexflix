@@ -10,4 +10,4 @@ import com.joenjogu.nexflix.models.Movie
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract val movieDao: MovieDao
-    }
+}

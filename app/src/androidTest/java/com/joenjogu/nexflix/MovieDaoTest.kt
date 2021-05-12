@@ -2,7 +2,6 @@ package com.joenjogu.nexflix
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
-import androidx.test.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.joenjogu.nexflix.data.MovieDao
 import com.joenjogu.nexflix.data.MovieDatabase
@@ -62,7 +61,7 @@ class MovieDaoTest {
 
     @Test
     fun testGetRecommendedMovies() {
-        val id= 1
+        val id = 1
         runBlocking {
             val recommendation = getValue(dao.getRecommendedMovies(id))
             assertThat(recommendation[0].id, equalTo(3))

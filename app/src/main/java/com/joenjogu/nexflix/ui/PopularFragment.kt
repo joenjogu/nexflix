@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
-import com.joenjogu.nexflix.adapters.PopularMovieAdapter
-import com.joenjogu.nexflix.viewmodels.PopularMovieViewModel
 import com.joenjogu.nexflix.R
+import com.joenjogu.nexflix.adapters.PopularMovieAdapter
 import com.joenjogu.nexflix.databinding.FragmentPopularBinding
+import com.joenjogu.nexflix.viewmodels.PopularMovieViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PopularFragment : Fragment() {
@@ -33,5 +33,4 @@ class PopularFragment : Fragment() {
 
         return binding.root
     }
-
 }
