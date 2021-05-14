@@ -7,12 +7,14 @@ import androidx.navigation.findNavController
 import androidx.work.*
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.worker.LatestMovieNotificationWorker
+import org.koin.core.component.KoinApiExtension
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
+    @KoinApiExtension
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
