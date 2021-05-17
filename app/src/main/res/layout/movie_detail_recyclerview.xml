@@ -17,7 +17,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movie_detail_recyclerview"
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             tools:listitem="@layout/popular_movie_list_item"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

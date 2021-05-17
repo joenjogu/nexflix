@@ -6,6 +6,7 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.MovieFavouriteUpdate
 import com.joenjogu.nexflix.utils.Category
 import com.joenjogu.nexflix.utils.toPopularDomain
+import com.joenjogu.nexflix.utils.toRecommendedDomain
 import com.joenjogu.nexflix.utils.toTrendingDomain
 
 class MovieRepository(
@@ -26,7 +27,7 @@ class MovieRepository(
 
         if (repoMovie != null) {
             Log.d("Repo", "getMovie: movie ID $id, $repoMovie")
-            getRecommendationsFromDB(id)
+            getRecommendedMovies(id)
             Log.d("Repo", "getMovie: getting recommended movies")
             return repoMovie
         } else {
@@ -92,7 +93,7 @@ class MovieRepository(
         return trendingMovies
     }
 
-    suspend fun getRecommendedMovies(movieId: Int): MutableList<Movie> {
+    private suspend fun getRecommendedMovies(movieId: Int) {
         val recommendedMovies = mutableListOf<Movie>()
         try {
             val response = apiService.getRecommendedMovies(movieId)
@@ -100,17 +101,15 @@ class MovieRepository(
                 val results = response.body()
                 if (results != null) {
                     for (result in results.movieResults) {
-                        recommendedMovies.add(result.toPopularDomain())
+                        recommendedMovies.add(result.toRecommendedDomain(movieId))
                     }
                 }
                 Log.d("Repo", "getRecommendedMovies: $recommendedMovies")
                 movieDao.insertAllMovies(recommendedMovies)
-                return recommendedMovies
             }
         } catch (exception: Throwable) {
             Log.e("getRecommendedMovies", "getRecommendedMovies: ", exception)
         }
-        return recommendedMovies
     }
 
     suspend fun setFavourite(movieId: Int) {
