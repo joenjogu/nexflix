@@ -34,9 +34,9 @@
                 <ImageView
                     android:id="@+id/movie_poster"
                     app:setImageUrl="@{movie.imageUrl}"
-                    android:scaleType="centerInside"
-                    android:layout_width="180dp"
-                    android:layout_height="245dp"
+                    android:scaleType="centerCrop"
+                    android:layout_width="190dp"
+                    android:layout_height="220dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +53,7 @@
                     android:textStyle="bold"
                     android:textAllCaps="true"
                     android:ellipsize="end"
-                    android:maxLines="2"
+                    android:maxLines="1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/movie_poster"
@@ -71,6 +71,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/movie_title"
+                    app:layout_constraintEnd_toStartOf="@+id/movie_release_date"
                     tools:text="8.6" />
 
                 <TextView
@@ -85,6 +86,7 @@
                     android:textColor="?attr/colorSecondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/movie_title"
+                    app:layout_constraintStart_toEndOf="@+id/movie_rating"
                     tools:text="20/12/2020" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
