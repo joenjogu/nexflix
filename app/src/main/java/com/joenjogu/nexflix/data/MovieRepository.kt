@@ -8,6 +8,9 @@ import com.joenjogu.nexflix.utils.Category
 import com.joenjogu.nexflix.utils.toPopularDomain
 import com.joenjogu.nexflix.utils.toRecommendedDomain
 import com.joenjogu.nexflix.utils.toTrendingDomain
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MovieRepository(
     private val apiService: MoviesApiService,
@@ -27,7 +30,7 @@ class MovieRepository(
 
         if (repoMovie != null) {
             Log.d("Repo", "getMovie: movie ID $id, $repoMovie")
-            getRecommendedMovies(id)
+            CoroutineScope(Dispatchers.IO).launch { getRecommendedMovies(id) }
             Log.d("Repo", "getMovie: getting recommended movies")
             return repoMovie
         } else {
@@ -93,7 +96,7 @@ class MovieRepository(
         return trendingMovies
     }
 
-    private suspend fun getRecommendedMovies(movieId: Int) {
+    suspend fun getRecommendedMovies(movieId: Int) {
         val recommendedMovies = mutableListOf<Movie>()
         try {
             val response = apiService.getRecommendedMovies(movieId)
