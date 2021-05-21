@@ -33,5 +33,14 @@
     <fragment
         android:id="@+id/favouriteFragment"
         android:name="com.joenjogu.nexflix.ui.FavouriteFragment"
-        android:label="FavouriteFragment" />
+        android:label="FavouriteFragment" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment"
+            app:popUpTo="@id/favouriteFragment" />
+        <argument
+            android:name="movieId"
+            app:argType="integer"
+            android:defaultValue="13" />
+    </fragment>
 </navigation>

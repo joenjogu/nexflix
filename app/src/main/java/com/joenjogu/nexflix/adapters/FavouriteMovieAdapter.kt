@@ -1,18 +1,22 @@
 package com.joenjogu.nexflix.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
 import com.joenjogu.nexflix.models.Movie
+import com.joenjogu.nexflix.ui.FavouriteFragmentDirections
 import com.joenjogu.nexflix.utils.Comparison
 
 class FavouriteMovieAdapter : ListAdapter<Movie, FavouriteMovieAdapter.FavouriteMovieViewHolder>(Comparison) {
     class FavouriteMovieViewHolder(val binding: PopularMovieListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: Movie) {
+        fun bind(movie: Movie, clickListener: View.OnClickListener) {
             binding.movie = movie
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
@@ -26,6 +30,14 @@ class FavouriteMovieAdapter : ListAdapter<Movie, FavouriteMovieAdapter.Favourite
 
     override fun onBindViewHolder(holder: FavouriteMovieViewHolder, position: Int) {
         val movie = getItem(position)
-        holder.bind(movie)
+        holder.bind(movie, createOnClickListener(movie.id))
+    }
+
+    private fun createOnClickListener(movieId: Int): View.OnClickListener {
+        return View.OnClickListener {
+            val direction =
+                FavouriteFragmentDirections.actionFavouriteFragmentToMovieDetailFragment(movieId)
+            it.findNavController().navigate(direction)
+        }
     }
 }
