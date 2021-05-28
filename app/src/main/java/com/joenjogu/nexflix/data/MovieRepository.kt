@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@Suppress("MemberVisibilityCanBePrivate")
 class MovieRepository(
     private val apiService: MoviesApiService,
     private val movieDao: MovieDao
@@ -117,5 +118,10 @@ class MovieRepository(
 
     suspend fun setFavourite(movieId: Int) {
         movieDao.updateFavourite(MovieFavouriteUpdate(movieId, Category.TopRated, true))
+    }
+
+    fun searchMovie(movie: String): LiveData<List<Movie>> {
+        val movieFormat = "%$movie%"
+        return movieDao.searchMovies(movieFormat)
     }
 }

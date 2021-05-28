@@ -1,9 +1,6 @@
 package com.joenjogu.nexflix.di
 
-import com.joenjogu.nexflix.viewmodels.FavouriteMovieViewModel
-import com.joenjogu.nexflix.viewmodels.LatestMovieViewModel
-import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
-import com.joenjogu.nexflix.viewmodels.PopularMovieViewModel
+import com.joenjogu.nexflix.viewmodels.*
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -23,5 +20,9 @@ val viewModelModule = module {
 
     viewModel {
         FavouriteMovieViewModel(repository = get())
+    }
+
+    viewModel {
+        ViewPagerViewModel(repository = get())
     }
 }

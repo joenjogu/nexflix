@@ -29,6 +29,10 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_favouriteFragment"
             app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment"
+            app:popUpTo="@id/viewPagerFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
@@ -42,5 +46,18 @@
             android:name="movieId"
             app:argType="integer"
             android:defaultValue="13" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.joenjogu.nexflix.ui.SearchResultFragment"
+        android:label="SearchResultFragment" >
+        <action
+            android:id="@+id/action_searchResultFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment"
+            app:popUpTo="@id/searchResultFragment" />
+        <argument
+            android:name="movieId"
+            app:argType="integer"
+            android:defaultValue="13"/>
     </fragment>
 </navigation>

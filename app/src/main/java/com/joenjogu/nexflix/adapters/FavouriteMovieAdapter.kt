@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.databinding.PopularMovieListItemBinding
 import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.ui.FavouriteFragmentDirections
+import com.joenjogu.nexflix.ui.SearchResultFragmentDirections
 import com.joenjogu.nexflix.utils.Comparison
 
 class FavouriteMovieAdapter : ListAdapter<Movie, FavouriteMovieAdapter.FavouriteMovieViewHolder>(Comparison) {
@@ -35,9 +37,21 @@ class FavouriteMovieAdapter : ListAdapter<Movie, FavouriteMovieAdapter.Favourite
 
     private fun createOnClickListener(movieId: Int): View.OnClickListener {
         return View.OnClickListener {
-            val direction =
-                FavouriteFragmentDirections.actionFavouriteFragmentToMovieDetailFragment(movieId)
-            it.findNavController().navigate(direction)
+            when (it.findNavController().currentDestination?.id){
+                R.id.favouriteFragment -> {
+                    val direction =
+                        FavouriteFragmentDirections.
+                        actionFavouriteFragmentToMovieDetailFragment(movieId)
+                    it.findNavController().navigate(direction)
+                }
+                R.id.searchResultFragment -> {
+                    val direction =
+                        SearchResultFragmentDirections.
+                        actionSearchResultFragmentToMovieDetailFragment(movieId)
+                    it.findNavController().navigate(direction)
+                }
+            }
+
         }
     }
 }

@@ -1,11 +1,7 @@
 package com.joenjogu.nexflix.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.MovieFavouriteUpdate
 import com.joenjogu.nexflix.utils.Category
@@ -30,4 +26,7 @@ interface MovieDao {
 
     @Query("SELECT * FROM movie WHERE favourite = 1")
     fun getFavouriteMovies(): LiveData<List<Movie>>
+
+    @Query("SELECT * FROM movie WHERE title LIKE :movieTitle")
+    fun searchMovies(movieTitle: String): LiveData<List<Movie>>
 }
