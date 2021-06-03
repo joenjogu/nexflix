@@ -28,4 +28,10 @@
     <style name="Theme.Nexflix.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@android:color/background_dark</item>
     </style>
+
+    <style name="Theme.Nexflix.ToolBarTitle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

@@ -2,18 +2,25 @@ package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.ColorInt
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bosphere.fadingedgelayout.FadingEdgeLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.adapters.PopularMovieAdapter
 import com.joenjogu.nexflix.databinding.FragmentMovieDetailBinding
+import com.joenjogu.nexflix.utils.GlideUtil
 import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -36,9 +43,17 @@ class MovieDetailFragment : Fragment() {
         val adapter = PopularMovieAdapter(context)
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
 
-        movieDetailViewModel.movie.observe(viewLifecycleOwner) {
-            detailBinding.movie = it
-            Log.d("Movie", "onCreateView: {${it.imageUrl}, ${it.id}}")
+        movieDetailViewModel.movie.observe(viewLifecycleOwner) { movie ->
+            detailBinding.movie = movie
+
+            setupFadingLayout(
+                requireActivity(),
+                movie.imageUrl,
+                detailBinding.toolbarMoviePoster,
+                detailBinding.fadingEdgeLayout,
+                detailBinding.collapsingToolbarLayout
+            )
+            Log.d("Movie", "onCreateView: {${movie.imageUrl}, ${movie.id}}")
         }
 
         movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner) { recommendedMovie ->
@@ -61,5 +76,29 @@ class MovieDetailFragment : Fragment() {
         }
 
         return detailBinding.root
+    }
+
+    private fun setupFadingLayout(
+        fragmentActivity: FragmentActivity,
+        imageUrl: String,
+        imageView: ImageView,
+        fadingEdgeLayout: FadingEdgeLayout,
+        collapsingToolbarLayout: CollapsingToolbarLayout
+    ) {
+        GlideUtil.getScrimPalette(
+            fragmentActivity,
+            imageUrl,
+            imageView,
+            fadingEdgeLayout,
+            collapsingToolbarLayout
+        )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        var typedValue: TypedValue = TypedValue()
+        requireContext().theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
+        @ColorInt
+        requireActivity().window.statusBarColor = typedValue.data
     }
 }
