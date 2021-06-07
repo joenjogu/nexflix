@@ -33,7 +33,7 @@
 
                 <ImageView
                     android:id="@+id/movie_poster"
-                    app:setImageUrl="@{movie.imageUrl}"
+                    app:setImageUrl="@{movie.posterUrl}"
                     android:scaleType="centerCrop"
                     android:layout_width="190dp"
                     android:layout_height="220dp"

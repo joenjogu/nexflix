@@ -48,12 +48,12 @@ class MovieDetailFragment : Fragment() {
 
             setupFadingLayout(
                 requireActivity(),
-                movie.imageUrl,
+                movie.backdropUrl,
                 detailBinding.toolbarMoviePoster,
                 detailBinding.fadingEdgeLayout,
                 detailBinding.collapsingToolbarLayout
             )
-            Log.d("Movie", "onCreateView: {${movie.imageUrl}, ${movie.id}}")
+            Log.d("Movie", "onCreateView: {${movie.backdropUrl}, ${movie.posterUrl}}")
         }
 
         movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner) { recommendedMovie ->

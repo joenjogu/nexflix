@@ -9,6 +9,7 @@ fun MovieResult.toPopularDomain(): Movie {
     return Movie(
         this.id,
         urlPrefix + this.poster_path,
+        urlPrefix + this.backdrop_path,
         this.title,
         this.overview,
         this.vote_average,
@@ -21,6 +22,7 @@ fun MovieResult.toRecommendedDomain(movieId: Int): Movie {
     return Movie(
         this.id,
         urlPrefix + this.poster_path,
+        urlPrefix + this.backdrop_path,
         this.title,
         this.overview,
         this.vote_average,
@@ -34,6 +36,7 @@ fun TrendingResult.toTrendingDomain(): Movie {
     return Movie(
         this.id,
         urlPrefix + this.poster_path,
+        urlPrefix + this.backdrop_path,
         this.title,
         this.overview,
         this.vote_average,
