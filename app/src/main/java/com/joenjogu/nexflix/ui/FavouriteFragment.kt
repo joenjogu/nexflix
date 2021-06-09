@@ -24,8 +24,13 @@ class FavouriteFragment : Fragment() {
         val adapter = FavouriteMovieAdapter()
         dataBinding.favouriteRecyclerview.adapter = adapter
 
-        favouriteMovieViewModel.favouriteMovies.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        favouriteMovieViewModel.favouriteMovies.observe(viewLifecycleOwner) { movieList ->
+            if (!movieList.isNullOrEmpty()) {
+                adapter.submitList(movieList)
+            } else {
+                dataBinding.favouriteRecyclerview.visibility = View.GONE
+//                dataBinding.lottieNoResults.visibility = View.VISIBLE
+            }
         }
 
         dataBinding.favouriteToolbar.setNavigationOnClickListener {
