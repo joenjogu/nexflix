@@ -9,9 +9,9 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.utilities.getValue
 import com.joenjogu.nexflix.utils.Category
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.junit.After
-import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,9 +23,28 @@ class MovieDaoTest {
     private lateinit var database: MovieDatabase
     private lateinit var dao: MovieDao
 
-    private val movie1 = Movie(1, "https:// url", "Tenet", "time", 2.4, "2020", Category.TopRated)
-    private val movie2 = Movie(2, "https:// url", "Joker", "jokes", 5.2, "2020", Category.TopRated)
-    private val movie3 = Movie(3, "https:// url", "Crush", "banter", 8.9, "2020", Category.Trending, 1)
+    private val movie1 = Movie(
+        1,
+        "https:// url",
+        "https:// url",
+        "Tenet",
+        "time",
+        2.4,
+        "2020",
+        Category.TopRated
+    )
+    private val movie2 = Movie(2, "https:// url","https:// url", "Joker", "jokes", 5.2, "2020", Category.TopRated)
+    private val movie3 = Movie(
+        3,
+        "https:// url",
+        "https:// url",
+        "Crush",
+        "banter",
+        8.9,
+        "2020",
+        Category.Trending,
+        1
+    )
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -55,7 +74,7 @@ class MovieDaoTest {
         val id = 2
         runBlocking {
             val value = dao.getMovieById(id)
-            assertThat(value.title, equalTo("Joker"))
+            assertThat(value?.title, equalTo("Joker"))
         }
     }
 

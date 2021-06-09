@@ -50,7 +50,12 @@ class MovieRepository(
             return Movie(
                 0,
                 "https://image.tmdb.org/t/p/w500//biznhvfedHPp9GKjlVFXH6OZtyU.jpg",
-                "NULL", "NULL", 0.0, "NULL", Category.Recommended
+                "https://image.tmdb.org/t/p/w500//biznhvfedHPp9GKjlVFXH6OZtyU.jpg",
+                "NULL",
+                "NULL",
+                0.0,
+                "NULL",
+                Category.Recommended
             )
         }
     }

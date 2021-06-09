@@ -27,6 +27,7 @@ object GlideUtil {
     ) {
         Glide.with(fragmentActivity)
             .load(imageUrl)
+            .placeholder(R.drawable.loading_placeholder)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -48,7 +49,7 @@ object GlideUtil {
                     val drawable = resource as BitmapDrawable
                     val bitmap = drawable.bitmap
 
-                    Palette.Builder(bitmap).maximumColorCount(32).generate { palette ->
+                    Palette.Builder(bitmap).maximumColorCount(16).generate { palette ->
                         val scrimColor =palette?.getVibrantColor(
                             ContextCompat.getColor(fragmentActivity, R.color.design_default_color_on_primary)
                         )
