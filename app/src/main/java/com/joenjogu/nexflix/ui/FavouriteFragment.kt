@@ -29,7 +29,7 @@ class FavouriteFragment : Fragment() {
                 adapter.submitList(movieList)
             } else {
                 dataBinding.favouriteRecyclerview.visibility = View.GONE
-//                dataBinding.lottieNoResults.visibility = View.VISIBLE
+                dataBinding.lottieNoResults.visibility = View.VISIBLE
             }
         }
 

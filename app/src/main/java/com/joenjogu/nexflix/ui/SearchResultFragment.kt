@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -31,8 +30,8 @@ class SearchResultFragment : Fragment() {
             if (!searchResults.isNullOrEmpty()) {
                 adapter.submitList(searchResults)
             } else {
-                Toast.makeText(requireContext(), "No Results!", Toast.LENGTH_LONG).show()
-//                TODO("add empty results placeholder")
+                dataBinding.favouriteRecyclerview.visibility = View.GONE
+                dataBinding.lottieNoResults.visibility = View.VISIBLE
             }
         }
 
