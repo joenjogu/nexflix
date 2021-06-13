@@ -29,11 +29,11 @@ class MovieRepository(
     suspend fun getMovie(id: Int): Movie {
         val repoMovie = movieDao.getMovieById(id)
 
-        if (repoMovie != null) {
+        if (repoMovie.value != null) {
             Log.d("Repo", "getMovie: movie ID $id, $repoMovie")
             CoroutineScope(Dispatchers.IO).launch { getRecommendedMovies(id) }
             Log.d("Repo", "getMovie: getting recommended movies")
-            return repoMovie
+            return repoMovie.value!!
         } else {
             try {
                 // fix recommendation id vs movie id
