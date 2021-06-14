@@ -1,6 +1,5 @@
 package com.joenjogu.nexflix.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.ui.MovieDetailFragmentDirections
 import com.joenjogu.nexflix.ui.ViewPagerFragmentDirections
 
-class PopularMovieAdapter(val context: Context?) : ListAdapter<Movie, PopularMovieAdapter.PopularMovieViewHolder>(Comparison) {
+class PopularMovieAdapter : ListAdapter<Movie, PopularMovieAdapter.PopularMovieViewHolder>(Comparison) {
 
     class PopularMovieViewHolder(val binding: PopularMovieListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

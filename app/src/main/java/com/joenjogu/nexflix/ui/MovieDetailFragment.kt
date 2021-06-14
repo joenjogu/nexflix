@@ -1,7 +1,6 @@
 package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +11,14 @@ import androidx.annotation.ColorInt
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bosphere.fadingedgelayout.FadingEdgeLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.adapters.PopularMovieAdapter
+import com.joenjogu.nexflix.data.core.Result
 import com.joenjogu.nexflix.databinding.FragmentMovieDetailBinding
 import com.joenjogu.nexflix.utils.GlideUtil
 import com.joenjogu.nexflix.viewmodels.MovieDetailViewModel
@@ -40,26 +40,63 @@ class MovieDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         detailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
         detailBinding.lifecycleOwner = this
-        val adapter = PopularMovieAdapter(context)
+        val adapter = PopularMovieAdapter()
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
 
-        movieDetailViewModel.movie.observe(viewLifecycleOwner) { movie ->
-            detailBinding.movie = movie
+//        movieDetailViewModel.movie.observe(viewLifecycleOwner) { movie ->
+//            detailBinding.movie = movie
+//
+//            setupFadingLayout(
+//                requireActivity(),
+//                movie.backdropUrl,
+//                detailBinding.toolbarMoviePoster,
+//                detailBinding.fadingEdgeLayout,
+//                detailBinding.collapsingToolbarLayout
+//            )
+//            Log.d("Movie", "onCreateView: {${movie.backdropUrl}, ${movie.posterUrl}}")
+//        }
+//
+//        movieDetailViewModel.recommendedMoviesResult.observe(viewLifecycleOwner) { recommendedMovie ->
+//            Log.d("Movie", "recommendedFromDB: $recommendedMovie")
+//            adapter.submitList(recommendedMovie)
+//        }
 
-            setupFadingLayout(
-                requireActivity(),
-                movie.backdropUrl,
-                detailBinding.toolbarMoviePoster,
-                detailBinding.fadingEdgeLayout,
-                detailBinding.collapsingToolbarLayout
-            )
-            Log.d("Movie", "onCreateView: {${movie.backdropUrl}, ${movie.posterUrl}}")
-        }
+        movieDetailViewModel.movieResult.observe(viewLifecycleOwner, Observer { result ->
+            when (result.status) {
+                Result.Status.LOADING -> {
 
-        movieDetailViewModel.recommendedMovies.observe(viewLifecycleOwner) { recommendedMovie ->
-            Log.d("Movie", "recommendedFromDB: $recommendedMovie")
-            adapter.submitList(recommendedMovie)
-        }
+                }
+                Result.Status.ERROR -> {
+
+                }
+                Result.Status.SUCCESS -> {
+                    detailBinding.movie = result.data
+
+                    setupFadingLayout(
+                        requireActivity(),
+                        result.data!!.backdropUrl,
+                        detailBinding.toolbarMoviePoster,
+                        detailBinding.fadingEdgeLayout,
+                        detailBinding.collapsingToolbarLayout
+                    )
+
+                }
+            }
+        })
+
+        movieDetailViewModel.recommendedMoviesResult.observe(viewLifecycleOwner, Observer { result ->
+            when (result.status) {
+                Result.Status.LOADING -> {
+
+                }
+                Result.Status.ERROR -> {
+
+                }
+                Result.Status.SUCCESS -> {
+                    adapter.submitList(result.data)
+                }
+            }
+        })
 
         detailBinding.toolbarFab.setOnClickListener { fab ->
             movieDetailViewModel.setFavourite()
@@ -67,6 +104,12 @@ class MovieDetailFragment : Fragment() {
             Toast.makeText(requireContext(), "Added to Favourites", Toast.LENGTH_LONG).show()
         }
 
+        setupNavigation()
+
+        return detailBinding.root
+    }
+
+    private fun setupNavigation() {
         val direction = MovieDetailFragmentDirections.actionMovieDetailFragmentToViewPagerFragment()
         detailBinding.toolbar.setNavigationOnClickListener {
             it.findNavController().navigate(direction)
@@ -74,8 +117,6 @@ class MovieDetailFragment : Fragment() {
         detailBinding.toolbar.setNavigationOnClickListener {
             it.findNavController().navigateUp()
         }
-
-        return detailBinding.root
     }
 
     private fun setupFadingLayout(

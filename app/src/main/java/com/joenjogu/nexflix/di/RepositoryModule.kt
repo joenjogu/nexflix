@@ -1,9 +1,6 @@
 package com.joenjogu.nexflix.di
 
-import com.joenjogu.nexflix.data.MovieRepository
-import com.joenjogu.nexflix.data.PopularMoviesRepository
-import com.joenjogu.nexflix.data.RecommendedMoviesRepository
-import com.joenjogu.nexflix.data.SingleMovieRepository
+import com.joenjogu.nexflix.data.*
 import com.joenjogu.nexflix.data.core.TrendingMoviesRepository
 import org.koin.dsl.module
 
@@ -17,7 +14,7 @@ val repositoryModule = module {
     }
 
     single {
-        SingleMovieRepository(
+        MovieDetailRepository(
             dao = get(),
             remoteDataSource = get()
         )
@@ -43,4 +40,12 @@ val repositoryModule = module {
             remoteDataSource = get()
         )
     }
+
+    single { PopularMoviesRemoteDataSource(apiService = get()) }
+
+    single { TrendingMoviesRemoteDataSource(apiService = get()) }
+
+    single { RecommendedMoviesRemoteDataSource(apiService = get()) }
+
+    single { MoviesRemoteDataSource(apiService = get()) }
 }

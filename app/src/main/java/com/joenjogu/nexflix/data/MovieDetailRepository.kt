@@ -1,14 +1,16 @@
 package com.joenjogu.nexflix.data
 
 import com.joenjogu.nexflix.data.core.resultLiveData
+import com.joenjogu.nexflix.models.MovieFavouriteUpdate
+import com.joenjogu.nexflix.utils.Category
 import com.joenjogu.nexflix.utils.toPopularDomain
 import com.joenjogu.nexflix.utils.toRecommendedDomain
 
-class SingleMovieRepository(
+class MovieDetailRepository(
     private val dao: MovieDao,
     private val remoteDataSource: MoviesRemoteDataSource
 ) {
-    fun getMovieResults(movieId: Int) = resultLiveData(
+    fun getMovieResult(movieId: Int) = resultLiveData(
         databaseQuery = { dao.getMovieById(movieId) },
         networkCall = { remoteDataSource.fetchMovie(movieId) },
         saveCallToDb = { dao.insertAllMovies(listOf(it.toPopularDomain())) }
@@ -23,4 +25,7 @@ class SingleMovieRepository(
             })
         }
     )
+
+    suspend fun setFavourite(movieId: Int) =
+        dao.updateFavourite(MovieFavouriteUpdate(movieId, Category.TopRated, true))
 }
