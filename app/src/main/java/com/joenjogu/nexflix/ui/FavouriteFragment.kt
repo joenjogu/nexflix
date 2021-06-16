@@ -26,6 +26,7 @@ class FavouriteFragment : Fragment() {
 
         favouriteMovieViewModel.favouriteMovies.observe(viewLifecycleOwner) { movieList ->
             if (!movieList.isNullOrEmpty()) {
+                dataBinding.lottieNoResults.visibility = View.GONE
                 adapter.submitList(movieList)
             } else {
                 dataBinding.favouriteRecyclerview.visibility = View.GONE

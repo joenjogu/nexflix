@@ -34,13 +34,6 @@ val repositoryModule = module {
         )
     }
 
-    single {
-        RecommendedMoviesRepository(
-            dao = get(),
-            remoteDataSource = get()
-        )
-    }
-
     single { PopularMoviesRemoteDataSource(apiService = get()) }
 
     single { TrendingMoviesRemoteDataSource(apiService = get()) }

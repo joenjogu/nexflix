@@ -20,7 +20,6 @@
             app:lottie_rawRes="@raw/lottie_lego_loader"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-
             android:layout_gravity="center"/>
 
         <androidx.recyclerview.widget.RecyclerView

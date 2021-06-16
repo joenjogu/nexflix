@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -43,13 +44,18 @@ class LatestFragment : Fragment() {
         viewModel.trendingMovies.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Result.Status.LOADING -> {
-
+                    binding.latestLoader.visibility = View.VISIBLE
                 }
                 Result.Status.ERROR -> {
-
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_LONG).show()
                 }
                 Result.Status.SUCCESS -> {
-                    adapter.submitList(result.data)
+                    if (!result.data.isNullOrEmpty()) {
+                        binding.latestLoader.visibility = View.GONE
+                        adapter.submitList(result.data)
+                    } else {
+                        binding.latestLoader.visibility = View.VISIBLE
+                    }
                 }
             }
         })

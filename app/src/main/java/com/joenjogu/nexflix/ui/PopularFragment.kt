@@ -1,7 +1,6 @@
 package com.joenjogu.nexflix.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,11 +45,14 @@ class PopularFragment : Fragment() {
                 }
                 Result.Status.ERROR -> {
                     Toast.makeText(requireContext(), result.message, Toast.LENGTH_LONG).show()
-                    Log.d("Popular Fragment", "onCreateView: Request Failed")
                 }
                 Result.Status.SUCCESS -> {
-                    binding.popularLoader.visibility = View.GONE
-                    adapter.submitList(result.data)
+                    if (!result.data.isNullOrEmpty()) {
+                        binding.popularLoader.visibility = View.GONE
+                        adapter.submitList(result.data)
+                    } else {
+                        binding.popularLoader.visibility = View.VISIBLE
+                    }
                 }
             }
         })

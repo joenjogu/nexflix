@@ -78,7 +78,7 @@ class LatestMovieNotificationWorker(
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-        val notificationBitmap = getPosterBitmap(movie.posterUrl)
+        val notificationBitmap = getPosterBitmap(movie.backdropUrl)
 
         val builder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_tv_24)
