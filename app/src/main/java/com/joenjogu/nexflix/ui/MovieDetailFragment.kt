@@ -87,13 +87,18 @@ class MovieDetailFragment : Fragment() {
         movieDetailViewModel.recommendedMoviesResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Result.Status.LOADING -> {
-
+                    detailBinding.movieDetailProgress.visibility = View.VISIBLE
                 }
                 Result.Status.ERROR -> {
-
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_LONG).show()
                 }
                 Result.Status.SUCCESS -> {
-                    adapter.submitList(result.data)
+                    if (!result.data.isNullOrEmpty()) {
+                        detailBinding.movieDetailProgress.visibility = View.GONE
+                        adapter.submitList(result.data)
+                    } else {
+                        detailBinding.movieDetailProgress.visibility = View.VISIBLE
+                    }
                 }
             }
         })
