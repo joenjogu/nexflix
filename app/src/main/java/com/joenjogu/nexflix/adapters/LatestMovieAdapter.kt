@@ -13,14 +13,14 @@ import com.joenjogu.nexflix.ui.ViewPagerFragmentDirections
 
 class LatestMovieAdapter : ListAdapter<Movie, LatestMovieAdapter.LatestMovieViewHolder>(Comparison) {
 
-    class LatestMovieViewHolder(val binding: LatestMovieListItemBinding)
-        : RecyclerView.ViewHolder(binding.root) {
-            fun bind(item: Movie, listener: View.OnClickListener) {
-                binding.movie = item
-                binding.clickListener = listener
-                binding.executePendingBindings()
-            }
+    class LatestMovieViewHolder(val binding: LatestMovieListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Movie, listener: View.OnClickListener) {
+            binding.movie = item
+            binding.clickListener = listener
+            binding.executePendingBindings()
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestMovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -32,7 +32,6 @@ class LatestMovieAdapter : ListAdapter<Movie, LatestMovieAdapter.LatestMovieView
     override fun onBindViewHolder(holder: LatestMovieViewHolder, position: Int) {
         val movie = getItem(position)
         holder.bind(movie, createOnClickListener(movie.id))
-
     }
 
     private fun createOnClickListener(movieId: Int): View.OnClickListener {
@@ -51,6 +50,5 @@ class LatestMovieAdapter : ListAdapter<Movie, LatestMovieAdapter.LatestMovieView
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
 }

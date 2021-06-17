@@ -17,16 +17,19 @@ import org.koin.dsl.module
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MovieDetailFragmentTest {
 
-    private val viewModel : MovieDetailViewModel = mockk(relaxed = true)
+    private val viewModel: MovieDetailViewModel = mockk(relaxed = true)
     private val fragment = MovieDetailFragment()
     private val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToMovieDetailFragment()
 
     @get:Rule
-    val fragmentRule = createRule<Fragment>(direction, module {
-        single(override = true) {
-            viewModel
+    val fragmentRule = createRule<Fragment>(
+        direction,
+        module {
+            single(override = true) {
+                viewModel
+            }
         }
-    })
+    )
 
     @Test
     fun testBasicFunction() {

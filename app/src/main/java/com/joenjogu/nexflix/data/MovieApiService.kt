@@ -21,8 +21,7 @@ interface MoviesApiService {
 
     @GET("movie/{movie_id}/recommendations")
     suspend fun getRecommendedMovies(
-            @Path("movie_id") movieId: Int,
-            @Query("api_key") apiKey: String = BuildConfig.API_KEY
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Response<SearchResponse>
-
 }

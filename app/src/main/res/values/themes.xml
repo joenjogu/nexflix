@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/darker_netflix_red</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >@android:color/transparent</item>
+        <item name="android:statusBarColor" >?attr/colorOnPrimary</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/black</item>
 
@@ -23,6 +23,11 @@
 
     <style name="Theme.Nexflix.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/background_grey</item>
+    </style>
+
+    <style name="Theme.Nexflix.ToolBarTitle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

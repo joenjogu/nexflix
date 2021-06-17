@@ -14,7 +14,8 @@ val databaseModule = module {
         Room.databaseBuilder(
             androidContext(),
             MovieDatabase::class.java,
-            "movie_db").fallbackToDestructiveMigration().build()
+            "movie_db"
+        ).fallbackToDestructiveMigration().build()
     }
 }
 

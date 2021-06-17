@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.joenjogu.nexflix.R
 
 @BindingAdapter("setAdapter")
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
@@ -19,6 +20,7 @@ fun ImageView.bindImageUrl(imageUrl: String?) {
     if (imageUrl != null && imageUrl.isNotBlank()) {
         Glide.with(this.context)
             .load(imageUrl)
+            .placeholder(R.drawable.loading_placeholder)
             .into(this)
     }
 }

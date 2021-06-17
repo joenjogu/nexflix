@@ -9,7 +9,7 @@ import com.joenjogu.nexflix.R
 import com.joenjogu.nexflix.ui.MainActivity
 import org.koin.core.module.Module
 
-abstract class FragmentTestRule<F: Fragment> : ActivityTestRule<MainActivity>(MainActivity::class.java, true){
+abstract class FragmentTestRule<F : Fragment> : ActivityTestRule<MainActivity>(MainActivity::class.java, true) {
 
     override fun beforeActivityLaunched() {
         super.beforeActivityLaunched()
@@ -31,9 +31,8 @@ abstract class FragmentTestRule<F: Fragment> : ActivityTestRule<MainActivity>(Ma
     abstract fun getModule(): Module
 }
 
-fun <F: Fragment> createRule(navDirections: NavDirections, module: Module) = object : FragmentTestRule<Fragment>() {
+fun <F : Fragment> createRule(navDirections: NavDirections, module: Module) = object : FragmentTestRule<Fragment>() {
     override fun getDirection(): NavDirections = navDirections
 
     override fun getModule(): Module = module
-
 }

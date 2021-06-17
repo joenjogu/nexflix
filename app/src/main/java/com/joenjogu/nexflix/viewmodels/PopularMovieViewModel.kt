@@ -1,27 +1,25 @@
 package com.joenjogu.nexflix.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.joenjogu.nexflix.data.MovieRepository
-import kotlinx.coroutines.launch
-import java.io.IOException
+import com.joenjogu.nexflix.data.PopularMoviesRepository
 
-class PopularMovieViewModel(private val repository: MovieRepository) : ViewModel() {
+class PopularMovieViewModel(repository: PopularMoviesRepository) : ViewModel() {
 
-    val movies = repository.popularMovies
+    val popularMoviesResult = repository.popularMoviesResult
 
-    init {
-        refreshDataFromRepository()
-    }
-
-    private fun refreshDataFromRepository() {
-        viewModelScope.launch {
-            try {
-                repository.getPopularMovies()
-            } catch (networkError: IOException) {
-                throw networkError
-            }
-        }
-
-    }
+//    val movies = repository.popularMovies
+//
+//    init {
+//        refreshDataFromRepository()
+//    }
+//
+//    private fun refreshDataFromRepository() {
+//        viewModelScope.launch {
+//            try {
+//                repository.getPopularMovies()
+//            } catch (networkError: IOException) {
+//                throw networkError
+//            }
+//        }
+//    }
 }
