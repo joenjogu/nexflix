@@ -21,6 +21,13 @@ class FavouriteFragment : Fragment() {
 
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite, container, false)
 
+        subscribeUi()
+        setupNavigation()
+
+        return dataBinding.root
+    }
+
+    private fun subscribeUi() {
         val adapter = FavouriteMovieAdapter()
         dataBinding.favouriteRecyclerview.adapter = adapter
 
@@ -33,11 +40,11 @@ class FavouriteFragment : Fragment() {
                 dataBinding.lottieNoResults.visibility = View.VISIBLE
             }
         }
+    }
 
+    private fun setupNavigation() {
         dataBinding.favouriteToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
-
-        return dataBinding.root
     }
 }

@@ -28,12 +28,7 @@ class LatestFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_latest, container, false)
 
         subscribeUi()
-//        viewModel.trendingMovie.observe(
-//            viewLifecycleOwner,
-//            {
-//                adapter.submitList(it)
-//            }
-//        )
+
         return binding.root
     }
 

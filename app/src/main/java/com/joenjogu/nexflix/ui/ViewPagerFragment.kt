@@ -38,7 +38,7 @@ class ViewPagerFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        setHasOptionsMenu(true)
+
         return inflater.inflate(R.layout.fragment_viewpager, container, false)
     }
 
@@ -58,8 +58,6 @@ class ViewPagerFragment : Fragment(), SearchView.OnQueryTextListener {
             }
             viewPager.setCurrentItem(0, true)
         }.attach()
-
-//        initToolbar(toolbar)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -116,9 +114,4 @@ class ViewPagerFragment : Fragment(), SearchView.OnQueryTextListener {
         adapter?.filter?.filter(newText)
         return true
     }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return NavigationUI.onNavDestinationSelected(item, findNavController())
-//                || super.onOptionsItemSelected(item)
-//    }
 }

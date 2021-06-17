@@ -28,9 +28,7 @@ class PopularFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_popular, container, false)
 
         subscribeUi()
-//        viewModel.movies.observe(viewLifecycleOwner) {
-//            adapter.submitList(it)
-//        }
+
         return binding.root
     }
 

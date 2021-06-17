@@ -21,6 +21,18 @@ class SearchResultFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite, container, false)
+
+
+        dataBinding.favouriteToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        subscribeUi()
+
+        return dataBinding.root
+    }
+
+    private fun subscribeUi() {
         dataBinding.favouriteToolbar.title = getString(R.string.search_results)
 
         val adapter = FavouriteMovieAdapter()
@@ -28,17 +40,12 @@ class SearchResultFragment : Fragment() {
 
         viewPagerViewModel.searchResults?.observe(viewLifecycleOwner) { searchResults ->
             if (!searchResults.isNullOrEmpty()) {
+                dataBinding.lottieNoResults.visibility = View.GONE
                 adapter.submitList(searchResults)
             } else {
                 dataBinding.favouriteRecyclerview.visibility = View.GONE
                 dataBinding.lottieNoResults.visibility = View.VISIBLE
             }
         }
-
-        dataBinding.favouriteToolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }
-
-        return dataBinding.root
     }
 }

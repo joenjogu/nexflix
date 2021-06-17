@@ -43,24 +43,6 @@ class MovieDetailFragment : Fragment() {
         val adapter = PopularMovieAdapter()
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
 
-//        movieDetailViewModel.movie.observe(viewLifecycleOwner) { movie ->
-//            detailBinding.movie = movie
-//
-//            setupFadingLayout(
-//                requireActivity(),
-//                movie.backdropUrl,
-//                detailBinding.toolbarMoviePoster,
-//                detailBinding.fadingEdgeLayout,
-//                detailBinding.collapsingToolbarLayout
-//            )
-//            Log.d("Movie", "onCreateView: {${movie.backdropUrl}, ${movie.posterUrl}}")
-//        }
-//
-//        movieDetailViewModel.recommendedMoviesResult.observe(viewLifecycleOwner) { recommendedMovie ->
-//            Log.d("Movie", "recommendedFromDB: $recommendedMovie")
-//            adapter.submitList(recommendedMovie)
-//        }
-
         movieDetailViewModel.movieResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Result.Status.LOADING -> {
