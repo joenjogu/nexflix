@@ -4,7 +4,7 @@ import com.joenjogu.nexflix.models.Movie
 import com.joenjogu.nexflix.models.MovieResult
 import com.joenjogu.nexflix.models.TrendingResult
 
-const val urlPrefix = "https://image.tmdb.org/t/p/w500/"
+const val urlPrefix = "https://image.tmdb.org/t/p/original/"
 fun MovieResult.toPopularDomain(): Movie {
     return Movie(
         this.id,
