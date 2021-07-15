@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.joenjogu.nexflix.R
+import com.joenjogu.nexflix.utils.convertDoubleRatingToString
 
 @BindingAdapter("setAdapter")
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
@@ -27,7 +28,7 @@ fun ImageView.bindImageUrl(imageUrl: String?) {
 
 @BindingAdapter("setRatingText")
 fun TextView.convertDoubleToString(number: Double) {
-    this.text = number.toBigDecimal().toPlainString()
+    this.text = convertDoubleRatingToString(number)
 }
 
 @BindingAdapter("setDateToYear")
