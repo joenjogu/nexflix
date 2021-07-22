@@ -12,11 +12,11 @@ Built using architecture components, MVVM and repository pattern as practice for
 
 ## Architecture
 
-The project is built using Model-View-ViewModel Architecture [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) 
-MVVM is a software architectural pattern which helps to cleanly separate the business and presentation logic of an application from its user interface.
+The project is built using Model-View-ViewModel Architecture.
+[MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) is a software architectural pattern which helps to cleanly separate the business and presentation logic of an application from its user interface.
 
 <p align="center">
-<img src="assets/MVVMPattern.png" alt="mvvm" width="200"/>
+<img src="assets/MVVMPattern.png" alt="mvvm" width="400"/>
 </p>
 
 ## Technologies Used
@@ -42,5 +42,14 @@ MVVM is a software architectural pattern which helps to cleanly separate the bus
 
 ## Demo
 
-<img src="assets/screenshot_1.png" width=200px;"/>  <img src="assets/screenshot_2.png" width=200px;"/>  <img src="assets/screenshot_3.png" width=200px;"/>  <img src="assets/screenshot_4.png" width=200px;"/>
-<img src="assets/screenshot_5.png" width=200px;"/>  <img src="assets/screenshot_6.png" width=200px;"/>
+The Application UI:
+Supports dark and light themes, search functionality, bookmarking and latest movie notifications.
+<p>
+<img src="assets/screenshot_1.png" width=250px;"/>  <img src="assets/screenshot_2.png" width=250pxpx;"/>
+</p>
+<p>
+<img src="assets/screenshot_3.png" width=250px;"/>  <img src="assets/screenshot_4.png" width=250pxpx;"/>
+</p>
+<p>
+<img src="assets/screenshot_5.png" width=250px;"/>  <img src="assets/screenshot_6.png" width=250px;"/>
+</p>
