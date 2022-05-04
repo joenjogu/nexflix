@@ -10,16 +10,16 @@ fun <T, A> resultLiveData(
     networkCall: suspend () -> Result<A>,
     saveCallToDb: suspend (A) -> Unit
 ): LiveData<Result<T>> =
-liveData(Dispatchers.IO) {
-    emit(Result.loading())
-    val source = databaseQuery.invoke().map { Result.success(it) }
-    emitSource(source)
-
-    val responseStatus = networkCall.invoke()
-    if (responseStatus.status == Result.Status.SUCCESS) {
-        responseStatus.data?.let { saveCallToDb(it) }
-    } else if (responseStatus.status == Result.Status.ERROR) {
-        emit(Result.error(responseStatus.message))
+    liveData(Dispatchers.IO) {
+        emit(Result.loading())
+        val source = databaseQuery.invoke().map { Result.success(it) }
         emitSource(source)
+
+        val responseStatus = networkCall.invoke()
+        if (responseStatus.status == Result.Status.SUCCESS) {
+            responseStatus.data?.let { saveCallToDb(it) }
+        } else if (responseStatus.status == Result.Status.ERROR) {
+            emit(Result.error(responseStatus.message))
+            emitSource(source)
+        }
     }
-}

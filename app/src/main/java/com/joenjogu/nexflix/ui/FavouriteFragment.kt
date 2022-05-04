@@ -17,7 +17,7 @@ class FavouriteFragment : Fragment() {
     private lateinit var dataBinding: FragmentFavouriteBinding
     private val favouriteMovieViewModel: FavouriteMovieViewModel by viewModel()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite, container, false)
 

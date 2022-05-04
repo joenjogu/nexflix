@@ -34,7 +34,7 @@ class MovieDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val movieDetailViewModel: MovieDetailViewModel by inject { parametersOf(args.movieId.toString()) }
 
         // Inflate the layout for this fragment
@@ -43,7 +43,7 @@ class MovieDetailFragment : Fragment() {
         val adapter = PopularMovieAdapter()
         detailBinding.recyclerviewLayout.movieDetailRecyclerview.adapter = adapter
 
-        movieDetailViewModel.movieResult.observe(viewLifecycleOwner, Observer { result ->
+        movieDetailViewModel.movieResult.observe(viewLifecycleOwner) { result ->
             when (result.status) {
                 Result.Status.LOADING -> {
 
@@ -64,7 +64,7 @@ class MovieDetailFragment : Fragment() {
 
                 }
             }
-        })
+        }
 
         movieDetailViewModel.recommendedMoviesResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {

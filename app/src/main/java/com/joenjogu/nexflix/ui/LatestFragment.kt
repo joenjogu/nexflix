@@ -23,7 +23,7 @@ class LatestFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_latest, container, false)
 
@@ -36,7 +36,7 @@ class LatestFragment : Fragment() {
         val adapter = LatestMovieAdapter()
         binding.adapter = adapter
 
-        viewModel.trendingMovies.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.trendingMovies.observe(viewLifecycleOwner) { result ->
             when (result.status) {
                 Result.Status.LOADING -> {
                     binding.latestLoader.visibility = View.VISIBLE
@@ -53,6 +53,6 @@ class LatestFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 }
