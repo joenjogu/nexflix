@@ -23,7 +23,7 @@ class PopularFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_popular, container, false)
 
@@ -36,7 +36,7 @@ class PopularFragment : Fragment() {
         val adapter = PopularMovieAdapter()
         binding.adapter = adapter
 
-        viewModel.popularMoviesResult.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.popularMoviesResult.observe(viewLifecycleOwner) { result ->
             when (result.status) {
                 Result.Status.LOADING -> {
                     binding.popularLoader.visibility = View.VISIBLE
@@ -53,6 +53,6 @@ class PopularFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 }

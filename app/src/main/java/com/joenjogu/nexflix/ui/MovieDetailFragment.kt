@@ -66,7 +66,7 @@ class MovieDetailFragment : Fragment() {
             }
         }
 
-        movieDetailViewModel.recommendedMoviesResult.observe(viewLifecycleOwner, Observer { result ->
+        movieDetailViewModel.recommendedMoviesResult.observe(viewLifecycleOwner) { result ->
             when (result.status) {
                 Result.Status.LOADING -> {
                     detailBinding.movieDetailProgress.visibility = View.VISIBLE
@@ -83,7 +83,7 @@ class MovieDetailFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
 
         detailBinding.toolbarFab.setOnClickListener { fab ->
             movieDetailViewModel.setFavourite()
@@ -124,7 +124,7 @@ class MovieDetailFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        var typedValue: TypedValue = TypedValue()
+        val typedValue = TypedValue()
         requireContext().theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
         @ColorInt
         requireActivity().window.statusBarColor = typedValue.data
